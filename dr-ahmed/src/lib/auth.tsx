@@ -10,7 +10,7 @@ interface AuthContextType {
   signUpWithEmail: (
     email: string,
     password: string,
-    data?: Record<string, any>,
+    data?: Record<string, unknown>,
   ) => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<{ error: AuthError | null }>;
 }
@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error };
   };
 
-  const signUpWithEmail = async (email: string, password: string, data?: Record<string, any>) => {
+  const signUpWithEmail = async (email: string, password: string, data?: Record<string, unknown>) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
