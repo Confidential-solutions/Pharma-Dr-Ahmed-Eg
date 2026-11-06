@@ -20,6 +20,7 @@ import { SiteFooter } from "../components/site/SiteFooter";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { PageScrollbar } from "../components/site/PageScrollbar";
 import { ScrollTop } from "../components/site/ScrollTop";
+import { NotFoundPage } from "../components/site/NotFoundPage";
 
 const langInitScript = `
 (function() {
@@ -37,49 +38,6 @@ const langInitScript = `
   } catch(e) {}
 })();
 `;
-
-// ── 404 Not Found ─────────────────────────────────────────────────────────────
-function NotFoundComponent() {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
-      {/* Green cross icon */}
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary shadow-soft">
-        <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
-          <rect x="18" y="6" width="12" height="36" rx="3" fill="currentColor" />
-          <rect x="6" y="18" width="36" height="12" rx="3" fill="currentColor" />
-        </svg>
-      </div>
-
-      <p className="text-6xl font-bold tracking-tight text-primary">404</p>
-
-      {/* Arabic */}
-      <h1 className="mt-4 text-2xl font-bold text-foreground">الصفحة غير موجودة</h1>
-      <p className="mt-2 text-sm text-muted-foreground">الرابط الذي فتحته غير موجود أو تم نقله.</p>
-
-      {/* English */}
-      <p className="mt-1 text-xs text-muted-foreground">
-        The page you're looking for doesn't exist or has been moved.
-      </p>
-
-      <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link
-          to="/"
-          className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:bg-primary/90 hover:shadow-elegant"
-        >
-          العودة للرئيسية
-        </Link>
-        <a
-          href="https://wa.me/201023043122"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-foreground shadow-soft transition-all hover:bg-accent"
-        >
-          تواصل معنا
-        </a>
-      </div>
-    </div>
-  );
-}
 
 // ── Error Boundary ────────────────────────────────────────────────────────────
 function ErrorComponent({ error, reset }: ErrorComponentProps) {
@@ -191,7 +149,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notFoundComponent: NotFoundComponent,
+  notFoundComponent: NotFoundPage,
   errorComponent: ErrorComponent,
 });
 

@@ -14,3 +14,4 @@ export * from "./PageScrollbar";
 export * from "./ThemeToggle";
 export * from "./AuthDialog";
 export * from "./SupabaseHealthCheck";
+export * from "./NotFoundPage";
