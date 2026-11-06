@@ -166,3 +166,4 @@ export interface LocaleDictionary {
   toTop: string;
   waMsg: string;
 }
+

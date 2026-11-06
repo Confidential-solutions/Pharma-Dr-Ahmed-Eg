@@ -28,3 +28,4 @@ export const enCommon = {
   toTop: "Back to top",
   waMsg: "Hello, I'd like to ask about a medicine",
 };
+

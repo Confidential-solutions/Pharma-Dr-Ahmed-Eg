@@ -24,21 +24,25 @@ function LocationPage() {
   return (
     <>
       <PageHero title={t.locationPage.title} sub={t.locationPage.sub} image={images.storefront} />
-      <section className="container-page py-20">
+      <section className="container-page section-py">
         <Reveal><MapCard tall /></Reveal>
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Reveal><HoursCard /></Reveal>
           <Reveal delay={0.1}>
-            <div className="h-full rounded-3xl border bg-card p-7 shadow-soft">
+            <div className="card-surface h-full p-6 sm:p-8">
               <div className="mb-6 flex items-center gap-3">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground"><Navigation className="h-6 w-6" /></span>
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-soft">
+                  <Navigation className="h-6 w-6" />
+                </span>
                 <h2 className="text-xl font-bold text-foreground">{t.locationPage.howTitle}</h2>
               </div>
               <ol className="space-y-4">
                 {t.locationPage.how.map((h, i) => (
-                  <li key={h} className="flex gap-3">
-                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-secondary text-sm font-bold text-primary">{i + 1}</span>
-                    <span className="text-muted-foreground">{h}</span>
+                  <li key={h} className="flex items-start gap-3">
+                    <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-secondary text-sm font-bold text-primary">
+                      {i + 1}
+                    </span>
+                    <span className="pt-0.5 leading-relaxed text-muted-foreground">{h}</span>
                   </li>
                 ))}
               </ol>

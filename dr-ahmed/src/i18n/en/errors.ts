@@ -12,3 +12,4 @@ export const enErrors = {
     serverErrorDesc: "Could not render the requested page from the server. Please try again in a few moments.",
   },
 };
+

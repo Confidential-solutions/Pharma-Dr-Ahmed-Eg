@@ -20,3 +20,4 @@ export const en: LocaleDictionary = {
   ...enAuth,
   ...enErrors,
 };
+

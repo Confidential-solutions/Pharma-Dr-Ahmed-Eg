@@ -28,3 +28,4 @@ export const arCommon = {
   toTop: "الرجوع لأعلى",
   waMsg: "السلام عليكم، عايز أستفسر عن دواء",
 };
+

@@ -97,7 +97,7 @@ export function AuthDialog() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button variant="outline" size="sm" className="gap-2 font-medium">
-            <UserIcon className="w-4 h-4 text-emerald-600" />
+            <UserIcon className="w-4 h-4 text-primary" />
             <span className="max-w-[120px] truncate">
               {user.user_metadata?.["full_name"] || user.email?.split("@")[0]}
             </span>

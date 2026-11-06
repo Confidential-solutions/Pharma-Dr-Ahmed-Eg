@@ -97,7 +97,7 @@ export function SupabaseHealthCheck() {
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
         <div className="space-y-1">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Database className="w-5 h-5 text-emerald-600" />
+            <Database className="w-5 h-5 text-primary" />
             Supabase Live Status & Seeds
           </CardTitle>
           <CardDescription>
@@ -127,8 +127,8 @@ export function SupabaseHealthCheck() {
         ) : (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <Badge variant="outline" className="text-emerald-700 bg-emerald-50 border-emerald-200 gap-1.5 py-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <Badge variant="outline" className="text-primary bg-primary/10 border-primary/20 gap-1.5 py-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
                 Connected ({todos.length} items loaded)
               </Badge>
             </div>

@@ -24,18 +24,25 @@ function Services() {
   return (
     <>
       <PageHero title={t.servicesPage.title} sub={t.servicesPage.sub} image={images.medicines} />
-      <section className="container-page space-y-16 py-20 md:space-y-24">
+      <section className="container-page section-py space-y-16 md:space-y-24">
         {t.servicesPage.details.map((s, i) => (
           <div key={s.k} className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
             <Reveal className={cn(i % 2 === 1 && "md:order-2")}>
-              <div className="group overflow-hidden rounded-[2rem] shadow-elegant">
-                <img src={serviceImage[s.k]} alt={s.t} loading="lazy" width={1200} height={912}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="group overflow-hidden rounded-[2rem] border border-border/50 shadow-elegant">
+                <img
+                  src={serviceImage[s.k]}
+                  alt={s.t}
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={912}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </Reveal>
             <Reveal delay={0.1} className="group">
               <IconBadge icon={serviceIcons[s.k]} />
-              <h2 className="mt-5 text-2xl font-bold text-foreground md:text-3xl">{s.t}</h2>
+              <h2 className="mt-5 text-2xl font-bold tracking-tight text-foreground md:text-3xl">{s.t}</h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{s.d}</p>
             </Reveal>
           </div>

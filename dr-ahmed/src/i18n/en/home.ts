@@ -17,3 +17,4 @@ export const enHome = {
   orderTitle: "Need medicine? Send us your prescription",
   orderText: "Snap a photo of your prescription and send it on WhatsApp — we'll reply with availability and price quickly.",
 };
+

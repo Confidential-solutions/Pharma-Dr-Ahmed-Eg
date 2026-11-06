@@ -22,3 +22,4 @@ export const arAuth = {
     toastSignOutSuccess: "تم تسجيل الخروج",
   },
 };
+

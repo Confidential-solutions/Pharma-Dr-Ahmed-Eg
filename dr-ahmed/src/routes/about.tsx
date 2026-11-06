@@ -27,18 +27,25 @@ function About() {
   return (
     <>
       <PageHero title={t.about.title} sub={t.about.sub} image={images.storefront} />
-      <section className="container-page grid items-center gap-12 py-20 lg:grid-cols-2">
+      <section className="container-page section-py grid items-center gap-12 lg:grid-cols-2">
         <Reveal>
-          <h2 className="text-3xl font-bold text-foreground">{t.about.storyTitle}</h2>
+          <span className="mb-4 block h-1 w-12 rounded-full bg-gradient-primary" />
+          <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{t.about.storyTitle}</h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{t.about.story1}</p>
           <p className="mt-4 text-lg leading-relaxed text-muted-foreground">{t.about.story2}</p>
         </Reveal>
         <Reveal delay={0.1}>
-          <img src={images.pharmacist} alt={t.gallery.items[1]} loading="lazy" width={1200} height={1408}
-            className="mx-auto aspect-[4/5] w-full max-w-md rounded-[2rem] object-cover shadow-elegant" />
+          <img
+            src={images.pharmacist}
+            alt={t.gallery.items[1]}
+            loading="lazy"
+            width={1200}
+            height={1408}
+            className="mx-auto aspect-[4/5] w-full max-w-md rounded-[2rem] object-cover shadow-elegant"
+          />
         </Reveal>
       </section>
-      <section className="bg-secondary/50 py-20">
+      <section className="border-y bg-secondary/40 section-py">
         <div className="container-page">
           <SectionHeading title={t.about.valuesTitle} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -54,14 +61,17 @@ function About() {
           </div>
         </div>
       </section>
-      <section className="container-page py-20">
+      <section className="container-page section-py">
         <SectionHeading title={t.about.whyTitle} />
         <div className="grid gap-5 md:grid-cols-3">
           {t.about.why.map((w, i) => (
             <Reveal key={w.t} delay={i * 0.07}>
               <Card className="flex h-full gap-4">
                 <IconBadge icon={whyIcons[i]} />
-                <div><h3 className="text-lg font-bold text-foreground">{w.t}</h3><p className="mt-1 text-muted-foreground">{w.d}</p></div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground">{w.t}</h3>
+                  <p className="mt-1 text-muted-foreground">{w.d}</p>
+                </div>
               </Card>
             </Reveal>
           ))}

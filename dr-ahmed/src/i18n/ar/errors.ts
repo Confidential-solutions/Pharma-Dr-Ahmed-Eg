@@ -12,3 +12,4 @@ export const arErrors = {
     serverErrorDesc: "تعذر تحميل الصفحة من الخادم حاليًا. يرجى المحاولة بعد لحظات.",
   },
 };
+

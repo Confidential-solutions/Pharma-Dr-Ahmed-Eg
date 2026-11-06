@@ -20,3 +20,4 @@ export const ar: LocaleDictionary = {
   ...arAuth,
   ...arErrors,
 };
+

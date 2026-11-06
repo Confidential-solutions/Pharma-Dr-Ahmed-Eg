@@ -63,23 +63,23 @@ function Contact() {
   return (
     <>
       <PageHero title={t.contact.title} sub={t.contact.sub} image={images.pharmacist} />
-      <section className="container-page grid gap-8 py-20 lg:grid-cols-[1.4fr_1fr]">
+      <section className="container-page section-py grid gap-8 lg:grid-cols-[1.4fr_1fr]">
         <Reveal>
-          <form onSubmit={onSubmit} noValidate className="space-y-5 rounded-3xl border bg-card p-6 shadow-soft md:p-8">
-            <h2 className="text-2xl font-bold text-foreground">{t.contact.formTitle}</h2>
+          <form onSubmit={onSubmit} noValidate className="card-surface space-y-5 p-6 sm:p-8 md:p-10">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground">{t.contact.formTitle}</h2>
             <div className="grid gap-5 sm:grid-cols-2">
-              <div className="space-y-2">
+              <div className="space-y-2 text-start">
                 <Label htmlFor="name">{t.contact.name}</Label>
                 <Input id="name" name="name" maxLength={100} className={field} aria-invalid={!!errors.name} />
                 {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 text-start">
                 <Label htmlFor="phone">{t.contact.phone}</Label>
                 <Input id="phone" name="phone" type="tel" dir="ltr" maxLength={16} className={field} aria-invalid={!!errors.phone} />
                 {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-start">
               <Label htmlFor="type">{t.contact.type}</Label>
               <Select value={type} onValueChange={setType}>
                 <SelectTrigger id="type" className={field}><SelectValue /></SelectTrigger>
@@ -88,32 +88,56 @@ function Contact() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 text-start">
               <Label htmlFor="message">{t.contact.message}</Label>
               <Textarea id="message" name="message" rows={5} maxLength={1000} className="rounded-xl bg-background" aria-invalid={!!errors.message} />
               {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
             </div>
-            <Button type="submit" variant="hero" size="xl" className="w-full rounded-full sm:w-auto"><Send />{t.contact.send}</Button>
-            {sent && <p className="text-sm text-primary" role="status">{t.contact.sentNote}</p>}
+            <Button type="submit" variant="hero" size="xl" className="w-full rounded-full sm:w-auto">
+              <Send className="me-2 h-4 w-4" />
+              {t.contact.send}
+            </Button>
+            {sent && <p className="text-sm font-medium text-primary" role="status">{t.contact.sentNote}</p>}
           </form>
         </Reveal>
-        <Reveal delay={0.1} className="space-y-4">
-          <div className="rounded-3xl border bg-card p-6 shadow-soft md:p-8">
+        <Reveal delay={0.1} className="space-y-6">
+          <div className="card-surface p-6 sm:p-8">
             <h2 className="mb-5 text-xl font-bold text-foreground">{t.contact.direct}</h2>
             <div className="space-y-3">
               <Button asChild variant="whatsapp" size="xl" className="w-full rounded-full">
-                <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon className="h-5 w-5" />{t.cta.whatsapp}</a>
+                <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="me-2 h-5 w-5" />
+                  {t.cta.whatsapp}
+                </a>
               </Button>
               <Button asChild variant="outline" size="xl" className="w-full rounded-full">
-                <a href={siteConfig.phoneHref}><Phone /><span dir="ltr">{siteConfig.phoneDisplay}</span></a>
+                <a href={siteConfig.phoneHref}>
+                  <Phone className="me-2 h-4 w-4" />
+                  <span dir="ltr" className="unicode-isolate">{siteConfig.phoneDisplay}</span>
+                </a>
               </Button>
               <Button asChild variant="soft" size="xl" className="w-full rounded-full">
-                <a href={siteConfig.facebookUrl} target="_blank" rel="noopener noreferrer"><Facebook />{t.contact.facebook}</a>
+                <a href={siteConfig.facebookUrl} target="_blank" rel="noopener noreferrer">
+                  <Facebook className="me-2 h-5 w-5" />
+                  {t.contact.facebook}
+                </a>
               </Button>
             </div>
-            <p className="mt-4 rounded-xl bg-secondary p-3 text-center text-sm text-secondary-foreground">⚠️ {t.contact.placeholderNote}</p>
+            <p className="mt-5 rounded-2xl bg-secondary/80 p-3 text-center text-sm font-medium text-secondary-foreground">
+              ⚠️ {t.contact.placeholderNote}
+            </p>
           </div>
-          <img src={images.delivery} alt={t.gallery.items[6]} loading="lazy" width={1200} height={912} className="aspect-[4/3] w-full rounded-3xl object-cover shadow-soft" />
+          <div className="overflow-hidden rounded-3xl border border-border/50 shadow-soft">
+            <img
+              src={images.delivery}
+              alt={t.gallery.items[6]}
+              loading="lazy"
+              decoding="async"
+              width={1200}
+              height={912}
+              className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </div>
         </Reveal>
       </section>
     </>

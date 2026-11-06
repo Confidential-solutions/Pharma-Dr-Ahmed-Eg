@@ -43,17 +43,17 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
       {/* Green cross icon */}
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary shadow-soft">
         <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
-          <rect x="18" y="6" width="12" height="36" rx="3" fill="#16a34a" />
-          <rect x="6" y="18" width="36" height="12" rx="3" fill="#16a34a" />
+          <rect x="18" y="6" width="12" height="36" rx="3" fill="currentColor" />
+          <rect x="6" y="18" width="36" height="12" rx="3" fill="currentColor" />
         </svg>
       </div>
 
-      <p className="text-6xl font-bold text-green-600 dark:text-green-400">404</p>
+      <p className="text-6xl font-bold tracking-tight text-primary">404</p>
 
       {/* Arabic */}
-      <h1 className="mt-3 text-xl font-semibold text-foreground">الصفحة غير موجودة</h1>
+      <h1 className="mt-4 text-2xl font-bold text-foreground">الصفحة غير موجودة</h1>
       <p className="mt-2 text-sm text-muted-foreground">الرابط الذي فتحته غير موجود أو تم نقله.</p>
 
       {/* English */}
@@ -64,7 +64,7 @@ function NotFoundComponent() {
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link
           to="/"
-          className="inline-flex items-center justify-center rounded-md bg-green-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
+          className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:bg-primary/90 hover:shadow-elegant"
         >
           العودة للرئيسية
         </Link>
@@ -72,7 +72,7 @@ function NotFoundComponent() {
           href="https://wa.me/201000000000"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-md border border-input bg-background px-5 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          className="inline-flex items-center justify-center rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-foreground shadow-soft transition-all hover:bg-accent"
         >
           تواصل معنا
         </a>
@@ -93,11 +93,11 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
       {/* Warning icon */}
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30">
+      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-destructive/10 text-destructive shadow-soft">
         <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
           <path
             d="M24 6L44 42H4L24 6Z"
-            stroke="#dc2626"
+            stroke="currentColor"
             strokeWidth="3"
             strokeLinejoin="round"
             fill="none"
@@ -107,16 +107,16 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
             y1="20"
             x2="24"
             y2="30"
-            stroke="#dc2626"
+            stroke="currentColor"
             strokeWidth="3"
             strokeLinecap="round"
           />
-          <circle cx="24" cy="36" r="1.5" fill="#dc2626" />
+          <circle cx="24" cy="36" r="1.5" fill="currentColor" />
         </svg>
       </div>
 
       {/* Arabic */}
-      <h1 className="text-xl font-semibold text-foreground">حدث خطأ غير متوقع</h1>
+      <h1 className="text-2xl font-bold text-foreground">حدث خطأ غير متوقع</h1>
       <p className="mt-2 max-w-sm text-sm text-muted-foreground">
         نعتذر عن هذا الخطأ. يمكنك المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.
       </p>
@@ -132,16 +132,16 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
             router.invalidate();
             reset();
           }}
-          className="inline-flex items-center justify-center rounded-md bg-green-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
+          className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-soft transition-all hover:bg-primary/90 hover:shadow-elegant"
         >
           حاول مجددًا
         </button>
-        <a
-          href="/"
-          className="inline-flex items-center justify-center rounded-md border border-input bg-background px-5 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+        <Link
+          to="/"
+          className="inline-flex items-center justify-center rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-foreground shadow-soft transition-all hover:bg-accent"
         >
           الصفحة الرئيسية
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -183,11 +183,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "dns-prefetch", href: "https://jqckzibvkggwfvsdzawa.supabase.co" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "preconnect",
-        href: "https://jqckzibvkggwfvsdzawa.supabase.co",
-        crossOrigin: "anonymous",
-      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap",
