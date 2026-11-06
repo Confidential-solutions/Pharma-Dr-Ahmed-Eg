@@ -36,7 +36,7 @@ function Gallery() {
             <Reveal key={src} delay={(i % 4) * 0.06} className={cn("h-full", spans[i])}>
               <button type="button" onClick={() => setActive(i)}
                 className="group relative h-full w-full overflow-hidden rounded-3xl shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                <img src={src} alt={t.gallery.items[i]} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={src} alt={t.gallery.items[i]} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <span className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-foreground/80 to-transparent p-4 text-start font-medium text-background transition-transform duration-300 group-hover:translate-y-0">
                   {t.gallery.items[i]}
                 </span>

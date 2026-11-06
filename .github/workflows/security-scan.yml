@@ -1,0 +1,48 @@
+name: Security Scan & Audit
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run every Sunday at midnight
+    - cron: '0 0 * * 0'
+
+jobs:
+  npm-audit:
+    name: Frontend Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run npm audit
+        run: |
+          cd dr-ahmed
+          npm audit --audit-level=high
+        continue-on-error: true
+
+  dotnet-security:
+    name: Backend Security Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 9.0 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore server-api/ServerApi.csproj
+
+      - name: List package vulnerabilities
+        run: dotnet list server-api/ServerApi.csproj package --vulnerable --include-transitive
+        continue-on-error: true

@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddResponseCompression(options => { options.EnableForHttps = true; });
+builder.Services.AddResponseCaching();
 
 // Register application services, Supabase client, and CORS
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -18,6 +20,10 @@ app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 // Enable CORS before other middleware to allow preflight requests
 app.UseCors(ServiceCollectionExtensions.CorsPolicyName);
+
+// Performance: gzip / brotli compression & HTTP response caching
+app.UseResponseCompression();
+app.UseResponseCaching();
 
 // Map native .NET 9 OpenAPI document: /openapi/v1.json
 app.MapOpenApi();

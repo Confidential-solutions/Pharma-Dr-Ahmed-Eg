@@ -72,7 +72,7 @@ function Index() {
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-primary opacity-20 blur-2xl" />
-            <img src={images.hero} alt={t.gallery.items[0]} width={1600} height={1104} fetchPriority="high"
+            <img src={images.hero} alt={t.gallery.items[0]} width={1600} height={1104} fetchPriority="high" decoding="async"
               className="relative aspect-[4/3] w-full rounded-[2rem] object-cover shadow-elegant" />
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
               className="glass absolute -bottom-6 start-6 flex items-center gap-3 rounded-2xl border p-4 shadow-elegant">

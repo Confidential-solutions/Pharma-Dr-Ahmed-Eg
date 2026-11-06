@@ -88,7 +88,7 @@ ALTER TABLE public.services ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.prescriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.contact_inquiries ENABLE ROW LEVEL SECURITY;
 
--- 3.1 Todos Policies (Allow public read, create, update for testing)
+-- 3.1 Todos Policies
 DROP POLICY IF EXISTS "Allow anon and auth read todos" ON public.todos;
 CREATE POLICY "Allow anon and auth read todos"
     ON public.todos FOR SELECT
@@ -122,7 +122,7 @@ CREATE POLICY "Allow public read services"
     TO anon, authenticated
     USING (is_active = true);
 
--- 3.4 Prescriptions Policies (Public insert, read own/all in test)
+-- 3.4 Prescriptions Policies
 DROP POLICY IF EXISTS "Allow public insert prescriptions" ON public.prescriptions;
 CREATE POLICY "Allow public insert prescriptions"
     ON public.prescriptions FOR INSERT
@@ -135,7 +135,7 @@ CREATE POLICY "Allow public read prescriptions"
     TO anon, authenticated
     USING (true);
 
--- 3.5 Contact Inquiries Policies (Public insert)
+-- 3.5 Contact Inquiries Policies
 DROP POLICY IF EXISTS "Allow public insert contact_inquiries" ON public.contact_inquiries;
 CREATE POLICY "Allow public insert contact_inquiries"
     ON public.contact_inquiries FOR INSERT
@@ -158,12 +158,11 @@ VALUES ('prescriptions', 'prescriptions', true)
 ON CONFLICT (id) DO UPDATE SET public = true;
 
 -- 4.2 Pharmacy images bucket (CDN-backed images for all pages)
--- Images are uploaded via `npm run db:upload-images` from the monorepo root.
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('pharmacy-images', 'pharmacy-images', true)
 ON CONFLICT (id) DO UPDATE SET public = true;
 
--- Storage policies: allow anyone to upload and view prescription images
+-- Storage policies: allow upload and public view
 DROP POLICY IF EXISTS "Allow public upload to prescriptions bucket" ON storage.objects;
 CREATE POLICY "Allow public upload to prescriptions bucket"
     ON storage.objects FOR INSERT
@@ -215,8 +214,6 @@ INSERT INTO public.pharmacy_info (
 );
 
 -- 5.3 Seed Services
--- Note: image_url values point to Supabase Storage bucket "pharmacy-images"
---       Run `npm run db:upload-images` from root to populate the bucket first.
 DELETE FROM public.services;
 INSERT INTO public.services (key, title_ar, title_en, description_ar, description_en, icon_name, image_url, is_active)
 VALUES
@@ -240,4 +237,3 @@ INSERT INTO public.contact_inquiries (name, phone, subject, message, is_resolved
 VALUES
     ('إبراهيم خليل', '+201123456789', 'استشارة دوائية', 'هل يمكن تناول البنادول مع أدوية السيولة؟', true),
     ('مريم حسن', '+201187654321', 'استفسار عن توفر منتج', 'هل متوفر كريم لاروش بوزيه إيفاكلار دو بلس؟', false);
-

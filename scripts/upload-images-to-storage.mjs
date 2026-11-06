@@ -53,7 +53,12 @@ async function ensureBucket(serviceKey) {
     console.log(`ℹ️   Bucket "${BUCKET}" already exists — skipping creation`);
     return;
   }
-  if (!res.ok) abort(`Create bucket failed: ${res.status} ${await res.text()}`);
+  const text = await res.text();
+  if (text.includes("BucketAlreadyExists") || text.includes("Duplicate")) {
+    console.log(`ℹ️   Bucket "${BUCKET}" already exists — skipping creation`);
+    return;
+  }
+  if (!res.ok) abort(`Create bucket failed: ${res.status} ${text}`);
   console.log(`✅  Bucket "${BUCKET}" created (public)`);
 }
 

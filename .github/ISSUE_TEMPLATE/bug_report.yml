@@ -1,0 +1,59 @@
+name: 🐛 Bug Report
+description: Create a report to help us fix a defect or unexpected behavior
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this issue! Please provide as much context as possible.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which part of the monorepo is experiencing the issue?
+      options:
+        - "Frontend (dr-ahmed)"
+        - "Backend Web API (server-api)"
+        - "Database & Supabase (database/)"
+        - "CI/CD & Workflows (.github/)"
+        - "Documentation (docs/)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Info
+      description: Node version, .NET SDK, Browser, OS, etc.
+      placeholder: Node 20, .NET 9, Chrome 120, Windows 11

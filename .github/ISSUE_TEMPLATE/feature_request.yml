@@ -1,0 +1,46 @@
+name: 💡 Feature Request
+description: Suggest an idea or enhancement for Dr. Ahmed Pharmacy platform
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature! Please explain the problem you are solving and your proposed solution.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Target Component
+      description: Which part of the system would this feature touch?
+      options:
+        - "Frontend (dr-ahmed)"
+        - "Backend Web API (server-api)"
+        - "Database & Storage (database/)"
+        - "Operations & CI/CD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a specific challenge or limitation?
+      placeholder: A clear and concise description of what the problem is...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented.
+      placeholder: Detail the expected workflow or feature behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any alternative solutions or features you've considered.

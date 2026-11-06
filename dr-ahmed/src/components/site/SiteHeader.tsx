@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Cross, Home, Images, Info, Languages, MapPin, MessageSquare, Stethoscope, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { ThemeToggle } from "./ThemeToggle";
-import { AuthDialog } from "./AuthDialog";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+
+// Lazy-load AuthDialog so Radix Dialog + Tabs + Sonner are not on the critical render path
+const AuthDialog = lazy(() => import("./AuthDialog").then((m) => ({ default: m.AuthDialog })));
 
 export const navItems = [
   { to: "/", key: "home" },
@@ -109,7 +111,9 @@ export function SiteHeader() {
             {t.lang}
           </button>
           <ThemeToggle />
-          <AuthDialog />
+          <Suspense fallback={<div className="h-9 w-20 animate-pulse rounded-md bg-muted/40" />}>
+            <AuthDialog />
+          </Suspense>
           <Button asChild variant="hero" className="hidden rounded-full md:inline-flex">
             <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer">{t.cta.order}</a>
           </Button>

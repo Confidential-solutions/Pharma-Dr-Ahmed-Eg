@@ -3,7 +3,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const sqlFilePath = path.join(__dirname, "..", "supabase-setup-and-seed.sql");
+const sqlFileCandidates = [
+  path.join(__dirname, "..", "database", "schema.sql"),
+  path.join(__dirname, "..", "database", "supabase-setup-and-seed.sql"),
+  path.join(__dirname, "..", "supabase-setup-and-seed.sql"),
+];
+const sqlFilePath = sqlFileCandidates.find(p => fs.existsSync(p)) || sqlFileCandidates[0];
 
 const PROJECT_REF = "jqckzibvkggwfvsdzawa";
 const token = process.env.SUPABASE_ACCESS_TOKEN || process.argv[2];

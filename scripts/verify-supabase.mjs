@@ -45,7 +45,7 @@ async function checkDatabase() {
   if (successCount === tablesToCheck.length) {
     console.log("🎉 All tables and seeds are ACTIVE and VERIFIED!");
   } else if (successCount === 0) {
-    console.log("⚠️ No tables found yet. Please run `supabase-setup-and-seed.sql` in your Supabase SQL Editor.");
+    console.log("⚠️ No tables found yet. Please run `database/schema.sql` in your Supabase SQL Editor.");
     console.log("Direct Link: https://supabase.com/dashboard/project/jqckzibvkggwfvsdzawa/sql/new");
   } else {
     console.log(`⚠️ Partial setup: ${successCount}/${tablesToCheck.length} tables verified.`);

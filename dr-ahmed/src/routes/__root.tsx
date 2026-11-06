@@ -29,19 +29,15 @@ function NotFoundComponent() {
       <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
         <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10" aria-hidden="true">
           <rect x="18" y="6" width="12" height="36" rx="3" fill="#16a34a" />
-          <rect x="6"  y="18" width="36" height="12" rx="3" fill="#16a34a" />
+          <rect x="6" y="18" width="36" height="12" rx="3" fill="#16a34a" />
         </svg>
       </div>
 
       <p className="text-6xl font-bold text-green-600 dark:text-green-400">404</p>
 
       {/* Arabic */}
-      <h1 className="mt-3 text-xl font-semibold text-foreground">
-        الصفحة غير موجودة
-      </h1>
-      <p className="mt-2 text-sm text-muted-foreground">
-        الرابط الذي فتحته غير موجود أو تم نقله.
-      </p>
+      <h1 className="mt-3 text-xl font-semibold text-foreground">الصفحة غير موجودة</h1>
+      <p className="mt-2 text-sm text-muted-foreground">الرابط الذي فتحته غير موجود أو تم نقله.</p>
 
       {/* English */}
       <p className="mt-1 text-xs text-muted-foreground">
@@ -89,15 +85,21 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
             strokeLinejoin="round"
             fill="none"
           />
-          <line x1="24" y1="20" x2="24" y2="30" stroke="#dc2626" strokeWidth="3" strokeLinecap="round" />
+          <line
+            x1="24"
+            y1="20"
+            x2="24"
+            y2="30"
+            stroke="#dc2626"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
           <circle cx="24" cy="36" r="1.5" fill="#dc2626" />
         </svg>
       </div>
 
       {/* Arabic */}
-      <h1 className="text-xl font-semibold text-foreground">
-        حدث خطأ غير متوقع
-      </h1>
+      <h1 className="text-xl font-semibold text-foreground">حدث خطأ غير متوقع</h1>
       <p className="mt-2 max-w-sm text-sm text-muted-foreground">
         نعتذر عن هذا الخطأ. يمكنك المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.
       </p>
@@ -159,8 +161,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "48x48" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
+      { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
+      { rel: "dns-prefetch", href: "https://jqckzibvkggwfvsdzawa.supabase.co" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://jqckzibvkggwfvsdzawa.supabase.co", crossOrigin: "anonymous" },
+      {
+        rel: "preconnect",
+        href: "https://jqckzibvkggwfvsdzawa.supabase.co",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap",

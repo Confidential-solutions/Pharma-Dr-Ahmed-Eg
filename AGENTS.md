@@ -20,4 +20,4 @@
 
 - **Root Orchestration:**
   - Root `package.json` coordinates running, testing, building, and verifying both frontend and backend (`npm run dev:frontend`, `npm run build:backend`, `npm run db:verify`, etc.).
-  - Schema, seeds, and migrations are documented in `supabase-setup-and-seed.sql` and scripts in `scripts/`.
+  - Schema, seeds, and migrations are documented in `database/schema.sql` and scripts in `scripts/`.

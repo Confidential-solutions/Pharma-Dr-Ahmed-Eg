@@ -18,6 +18,7 @@ public class PharmacyController : ControllerBase
     }
 
     [HttpGet("info")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public ActionResult<ApiResponse<PharmacyInfoDto>> GetInfo()
     {
         var info = _pharmacyService.GetPharmacyInfo();
@@ -25,6 +26,7 @@ public class PharmacyController : ControllerBase
     }
 
     [HttpGet("hours")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public ActionResult<ApiResponse<IEnumerable<OperatingHourItem>>> GetHours()
     {
         var hours = _pharmacyService.GetOperatingHours();

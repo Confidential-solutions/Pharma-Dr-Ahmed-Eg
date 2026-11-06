@@ -1,4 +1,0 @@
-- [x] Inspect the archive and map its pages, data, and integrations.
-- [ ] Migrate the pharmacy pages, shared site elements, design, and photos.
-- [ ] Verify the pages, assets, and contact flow in the running preview.
-- [ ] Record migration status and report any missing owner-supplied details.

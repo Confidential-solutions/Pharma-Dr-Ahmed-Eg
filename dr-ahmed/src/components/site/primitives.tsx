@@ -37,7 +37,7 @@ export function SectionHeading({ title, sub, className }: { title: string; sub?:
 export function PageHero({ title, sub, image }: { title: string; sub: string; image: string }) {
   return (
     <section className="relative overflow-hidden">
-      <img src={image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" width={1600} height={900} />
+      <img src={image} alt="" aria-hidden loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" width={1600} height={900} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/60" />
       <div className="container-page relative py-20 text-center md:py-28">
         <motion.h1

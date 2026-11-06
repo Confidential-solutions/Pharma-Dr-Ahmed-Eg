@@ -1,0 +1,50 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'dr-ahmed/**'
+      - 'package.json'
+      - '.github/workflows/frontend-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'dr-ahmed/**'
+      - 'package.json'
+      - '.github/workflows/frontend-ci.yml'
+
+jobs:
+  validate:
+    name: Lint, Typecheck & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'dr-ahmed/package-lock.json'
+
+      - name: Install frontend dependencies
+        run: |
+          cd dr-ahmed
+          npm ci
+
+      - name: TypeScript type checking
+        run: |
+          cd dr-ahmed
+          npx tsc --noEmit
+
+      - name: Build frontend for production
+        run: |
+          cd dr-ahmed
+          npm run build
+        env:
+          NODE_ENV: production
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL || 'https://jqckzibvkggwfvsdzawa.supabase.co' }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY || 'sb_publishable_QOjIqSJvhptTcEKprbizPQ_VkWjya8B' }}

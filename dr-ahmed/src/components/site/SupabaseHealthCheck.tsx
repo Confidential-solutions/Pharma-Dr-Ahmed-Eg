@@ -116,7 +116,7 @@ export function SupabaseHealthCheck() {
               <p className="font-semibold">Table Not Created in Database</p>
               <p className="text-xs mt-1 opacity-90">{error}</p>
               <p className="text-xs mt-2 font-medium">
-                👉 Run the script <code className="bg-destructive/20 px-1 rounded">supabase-setup-and-seed.sql</code> in your Supabase SQL Editor to initialize tables and seeds.
+                👉 Run the script <code className="bg-destructive/20 px-1 rounded">database/schema.sql</code> in your Supabase SQL Editor to initialize tables and seeds.
               </p>
             </div>
           </div>

@@ -17,6 +17,7 @@ public class ServicesController : ControllerBase
     }
 
     [HttpGet]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public ActionResult<ApiResponse<IEnumerable<PharmacyServiceDto>>> GetAll()
     {
         var services = _pharmacyService.GetServices();
