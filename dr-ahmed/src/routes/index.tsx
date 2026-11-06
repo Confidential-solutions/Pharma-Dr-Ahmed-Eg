@@ -59,10 +59,27 @@ function Index() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-hero">
-        <div className="container-page grid items-center gap-12 py-12 md:py-20 lg:grid-cols-2">
-          <div>
+      {/* Hero — full-bleed background image */}
+      <section className="relative min-h-[85vh] overflow-hidden flex items-center">
+        {/* Background image */}
+        <img
+          src={images.hero}
+          alt=""
+          aria-hidden
+          fetchPriority="high"
+          decoding="async"
+          width={1600}
+          height={1104}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Gradient overlay — dark at bottom for readability, lighter at top */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+        {/* Coloured ambient glow on top of overlay */}
+        <div className="absolute inset-0 bg-hero opacity-70" />
+
+        {/* Content */}
+        <div className="container-page relative z-10 py-24 md:py-32">
+          <div className="mx-auto max-w-2xl text-center">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,7 +100,7 @@ function Index() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
+              className="mt-6 text-lg leading-relaxed text-muted-foreground"
             >
               {t.hero.text}
             </motion.p>
@@ -91,7 +108,7 @@ function Index() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-8 flex flex-wrap gap-3"
+              className="mt-8 flex flex-wrap justify-center gap-3"
             >
               <Button
                 asChild
@@ -104,14 +121,16 @@ function Index() {
                   {t.cta.whatsapp}
                 </a>
               </Button>
-              <Button asChild variant="outline" size="xl" className="rounded-full shadow-soft">
+              <Button asChild variant="outline" size="xl" className="rounded-full shadow-soft backdrop-blur-sm">
                 <a href={siteConfig.phoneHref}>
                   <Phone className="h-4 w-4" />
                   {t.cta.call}
                 </a>
               </Button>
             </motion.div>
-            <div className="mt-10 grid grid-cols-3 gap-3 sm:max-w-lg">
+
+            {/* Stats row */}
+            <div className="mt-12 grid grid-cols-3 gap-3 sm:gap-4">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.a}
@@ -127,36 +146,21 @@ function Index() {
               ))}
             </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-primary opacity-20 blur-2xl" />
-            <img
-              src={images.hero}
-              alt={t.gallery.items[0]}
-              width={1600}
-              height={1104}
-              fetchPriority="high"
-              decoding="async"
-              className="relative aspect-[4/3] w-full rounded-[2rem] object-cover shadow-elegant"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="glass absolute -bottom-6 start-6 flex items-center gap-3 rounded-2xl border p-4 shadow-elegant"
-            >
-              <CheckCircle2 className="h-8 w-8 shrink-0 text-primary" />
-              <div>
-                <p className="font-bold text-foreground">{t.brandShort}</p>
-                <p className="text-sm text-muted-foreground">{t.footer.tagline}</p>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
+
+        {/* Bottom trust badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="glass absolute bottom-6 start-6 flex items-center gap-3 rounded-2xl border p-4 shadow-elegant z-10"
+        >
+          <CheckCircle2 className="h-8 w-8 shrink-0 text-primary" />
+          <div>
+            <p className="font-bold text-foreground">{t.brandShort}</p>
+            <p className="text-sm text-muted-foreground">{t.footer.tagline}</p>
+          </div>
+        </motion.div>
       </section>
 
       {/* Services */}
