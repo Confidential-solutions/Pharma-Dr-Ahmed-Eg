@@ -1,19 +1,9 @@
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { User, Session, AuthError } from "@supabase/supabase-js";
+import type { User, Session } from "@supabase/supabase-js";
+import type { AuthContextType } from "@/types";
 import { supabase } from "./supabase";
 
-interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  loading: boolean;
-  signInWithEmail: (email: string, password: string) => Promise<{ error: AuthError | null }>;
-  signUpWithEmail: (
-    email: string,
-    password: string,
-    data?: Record<string, unknown>,
-  ) => Promise<{ error: AuthError | null }>;
-  signOut: () => Promise<{ error: AuthError | null }>;
-}
+export type { AuthContextType };
 
 const AuthContext = createContext<AuthContextType>({
   user: null,

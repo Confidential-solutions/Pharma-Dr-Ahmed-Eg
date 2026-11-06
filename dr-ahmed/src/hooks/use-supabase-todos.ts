@@ -6,13 +6,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import type { Todo } from "@/types";
 
-export interface Todo {
-  id: number;
-  name: string;
-  is_complete: boolean;
-  inserted_at: string;
-}
+export type { Todo };
 
 interface UseSupabaseTodosReturn {
   todos: Todo[];

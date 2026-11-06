@@ -1,8 +1,9 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 import { flushSync } from "react-dom";
+import type { Theme, ThemeContextValue } from "@/types";
 
-type Theme = "light" | "dark";
-const ThemeCtx = createContext<{ theme: Theme; toggle: (e?: { clientX: number; clientY: number }) => void }>({
+export type { Theme };
+const ThemeCtx = createContext<ThemeContextValue>({
   theme: "light",
   toggle: () => {},
 });

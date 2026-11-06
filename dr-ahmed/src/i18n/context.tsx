@@ -1,18 +1,10 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { Lang, Dir, LocaleDictionary } from "./types";
+import type { Lang, Dir, LocaleDictionary, I18nContextValue } from "@/types";
 import { ar } from "./ar";
 import { en } from "./en";
 
+export type { I18nContextValue };
 export const dictionaries: Record<Lang, LocaleDictionary> = { ar, en };
-
-export interface I18nContextValue {
-  lang: Lang;
-  dir: Dir;
-  isRtl: boolean;
-  t: LocaleDictionary;
-  toggleLang: () => void;
-  setLanguage: (lang: Lang) => void;
-}
 
 const defaultContextValue: I18nContextValue = {
   lang: "ar",
