@@ -1,10 +1,17 @@
 // ⚠️ Edit these values to update contact info site-wide.
 export const siteConfig = {
-  // TODO: replace with the real numbers (international format, digits only for whatsapp)
-  phoneDisplay: "+20 1XX XXX XXXX",
-  phoneHref: "tel:+201000000000",
-  whatsappNumber: "201000000000",
-  facebookUrl: "https://facebook.com/",
+  // ── Contact ──────────────────────────────────────────────────────────────
+  phoneDisplay: "+20 102 304 3122",
+  phoneHref: "tel:+201023043122",
+  whatsappNumber: "201023043122",
+  email: "dr.ahmed.tarak73@gmail.com",
+  emailHref: "mailto:dr.ahmed.tarak73@gmail.com",
+
+  // ── Social media ─────────────────────────────────────────────────────────
+  facebookUrl: "https://www.facebook.com/profile.php?id=61596102338642",
+  instagramUrl: "https://www.instagram.com/pharma_ahmed_selim",
+  tiktokUrl: "https://www.tiktok.com/@ahmed.tarek8125",
+  linkedinUrl: "https://www.linkedin.com/in/pharma-dr-ahmed-tarek/",
   mapQuery: "مسجد الشيخ إسماعيل ميت الرخا زفتى الغربية",
   // Working hours — edit freely
   hours: [

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
-import { Facebook, Phone, Send } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, Send } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { images } from "@/lib/images";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
@@ -12,6 +12,15 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PageHero, Reveal } from "@/components/site/primitives";
 import { WhatsAppIcon } from "@/components/site/WhatsAppFab";
+
+/** TikTok SVG — not in Lucide */
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.98a8.26 8.26 0 0 0 4.83 1.55V7.08a4.84 4.84 0 0 1-1.06-.39z" />
+    </svg>
+  );
+}
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -117,15 +126,47 @@ function Contact() {
                 </a>
               </Button>
               <Button asChild variant="soft" size="xl" className="w-full rounded-full">
-                <a href={siteConfig.facebookUrl} target="_blank" rel="noopener noreferrer">
-                  <Facebook className="me-2 h-5 w-5" />
-                  {t.contact.facebook}
+                <a href={siteConfig.emailHref}>
+                  <Mail className="me-2 h-5 w-5" />
+                  <span dir="ltr" className="unicode-isolate">{siteConfig.email}</span>
                 </a>
               </Button>
+              {/* Social links row */}
+              <div className="flex gap-2 pt-1">
+                <a
+                  href={siteConfig.facebookUrl}
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+                <a
+                  href={siteConfig.instagramUrl}
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href={siteConfig.tiktokUrl}
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="TikTok"
+                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  <TikTokIcon className="h-5 w-5" />
+                </a>
+                <a
+                  href={siteConfig.linkedinUrl}
+                  target="_blank" rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
             </div>
-            <p className="mt-5 rounded-2xl bg-secondary/80 p-3 text-center text-sm font-medium text-secondary-foreground">
-              ⚠️ {t.contact.placeholderNote}
-            </p>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border/50 shadow-soft">
             <img

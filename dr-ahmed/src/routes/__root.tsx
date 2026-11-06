@@ -69,7 +69,7 @@ function NotFoundComponent() {
           العودة للرئيسية
         </Link>
         <a
-          href="https://wa.me/201000000000"
+          href="https://wa.me/201023043122"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-full border border-border bg-card px-6 py-2.5 text-sm font-medium text-foreground shadow-soft transition-all hover:bg-accent"
