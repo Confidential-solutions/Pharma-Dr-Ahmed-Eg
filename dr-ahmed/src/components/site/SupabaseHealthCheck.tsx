@@ -1,96 +1,22 @@
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, XCircle, Loader2, Database, RefreshCw, Plus } from "lucide-react";
-import { toast } from "sonner";
-
-interface Todo {
-  id: number;
-  name: string;
-  is_complete: boolean;
-  inserted_at: string;
-}
+import { useSupabaseTodos } from "@/hooks";
 
 export function SupabaseHealthCheck() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [newTodoName, setNewTodoName] = useState("");
-  const [adding, setAdding] = useState(false);
-
-  const fetchTodos = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const { data, error } = await supabase
-        .from("todos")
-        .select("*")
-        .order("inserted_at", { ascending: false });
-
-      if (error) {
-        setError(error.message);
-      } else {
-        setTodos(data || []);
-      }
-    } catch (err: any) {
-      setError(err?.message || "Connection failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleAddTodo = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newTodoName.trim()) return;
-
-    setAdding(true);
-    try {
-      const { data, error } = await supabase
-        .from("todos")
-        .insert([{ name: newTodoName.trim(), is_complete: false }])
-        .select();
-
-      if (error) {
-        toast.error(`Error: ${error.message}`);
-      } else {
-        toast.success("Todo added to Supabase!");
-        setNewTodoName("");
-        if (data) {
-          setTodos((prev) => [data[0], ...prev]);
-        }
-      }
-    } catch (err: any) {
-      toast.error(err.message);
-    } finally {
-      setAdding(false);
-    }
-  };
-
-  const handleToggleTodo = async (todo: Todo) => {
-    try {
-      const { error } = await supabase
-        .from("todos")
-        .update({ is_complete: !todo.is_complete })
-        .eq("id", todo.id);
-
-      if (error) {
-        toast.error(error.message);
-      } else {
-        setTodos((prev) =>
-          prev.map((t) => (t.id === todo.id ? { ...t, is_complete: !t.is_complete } : t))
-        );
-      }
-    } catch (err: any) {
-      toast.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  const {
+    todos,
+    loading,
+    error,
+    newTodoName,
+    setNewTodoName,
+    adding,
+    fetchTodos,
+    handleAddTodo,
+    handleToggleTodo,
+  } = useSupabaseTodos();
 
   return (
     <Card className="w-full max-w-xl mx-auto shadow-soft border">

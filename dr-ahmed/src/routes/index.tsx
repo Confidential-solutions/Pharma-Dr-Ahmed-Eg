@@ -121,7 +121,12 @@ function Index() {
                   {t.cta.whatsapp}
                 </a>
               </Button>
-              <Button asChild variant="outline" size="xl" className="rounded-full shadow-soft backdrop-blur-sm">
+              <Button
+                asChild
+                variant="outline"
+                size="xl"
+                className="rounded-full shadow-soft backdrop-blur-sm"
+              >
                 <a href={siteConfig.phoneHref}>
                   <Phone className="h-4 w-4" />
                   {t.cta.call}

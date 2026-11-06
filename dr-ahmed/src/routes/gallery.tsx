@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { images } from "@/lib/images";
+import { useLightbox } from "@/hooks";
 import { PageHero, Reveal } from "@/components/site/primitives";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +11,11 @@ export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "معرض الصور | صيدلية د. أحمد طارق سليم" },
-      { name: "description", content: "صور من داخل صيدلية د. أحمد طارق سليم في ميت الرخا: الأدوية، التجميل، رعاية الطفل والمزيد." },
+      {
+        name: "description",
+        content:
+          "صور من داخل صيدلية د. أحمد طارق سليم في ميت الرخا: الأدوية، التجميل، رعاية الطفل والمزيد.",
+      },
       { property: "og:title", content: "معرض صور صيدلية د. أحمد طارق سليم" },
       { property: "og:description", content: "جولة سريعة داخل الصيدلية." },
       { property: "og:type", content: "website" },
@@ -21,12 +25,30 @@ export const Route = createFileRoute("/gallery")({
   component: Gallery,
 });
 
-const list = [images.hero, images.pharmacist, images.medicines, images.beauty, images.baby, images.bp, images.delivery, images.storefront];
-const spans = ["sm:col-span-2 sm:row-span-2", "sm:row-span-2", "", "", "sm:col-span-2", "", "", "sm:col-span-2 lg:col-span-4"];
+const list = [
+  images.hero,
+  images.pharmacist,
+  images.medicines,
+  images.beauty,
+  images.baby,
+  images.bp,
+  images.delivery,
+  images.storefront,
+];
+const spans = [
+  "sm:col-span-2 sm:row-span-2",
+  "sm:row-span-2",
+  "",
+  "",
+  "sm:col-span-2",
+  "",
+  "",
+  "sm:col-span-2 lg:col-span-4",
+];
 
 function Gallery() {
   const { t } = useI18n();
-  const [active, setActive] = useState<number | null>(null);
+  const { active, open, close } = useLightbox(list.length);
   return (
     <>
       <PageHero title={t.gallery.title} sub={t.gallery.sub} image={images.hero} />
@@ -36,7 +58,7 @@ function Gallery() {
             <Reveal key={src} delay={(i % 4) * 0.06} className={cn("h-full", spans[i])}>
               <button
                 type="button"
-                onClick={() => setActive(i)}
+                onClick={() => open(i)}
                 className="group relative h-full w-full overflow-hidden rounded-3xl border border-border/40 shadow-soft transition-all duration-300 hover:shadow-elegant focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <img
@@ -60,7 +82,7 @@ function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActive(null)}
+            onClick={close}
             role="dialog"
             aria-modal="true"
             aria-label={t.gallery.items[active]}
@@ -68,6 +90,7 @@ function Gallery() {
           >
             <button
               type="button"
+              onClick={close}
               aria-label="close"
               className="absolute top-4 end-4 grid h-11 w-11 place-items-center rounded-full bg-card text-foreground shadow-soft transition-transform hover:scale-105"
             >
@@ -81,8 +104,14 @@ function Gallery() {
               className="max-w-5xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={list[active]} alt={t.gallery.items[active]} className="max-h-[80dvh] w-auto rounded-2xl shadow-elegant" />
-              <figcaption className="mt-3 text-center font-medium text-background">{t.gallery.items[active]}</figcaption>
+              <img
+                src={list[active]}
+                alt={t.gallery.items[active]}
+                className="max-h-[80dvh] w-auto rounded-2xl shadow-elegant"
+              />
+              <figcaption className="mt-3 text-center font-medium text-background">
+                {t.gallery.items[active]}
+              </figcaption>
             </motion.figure>
           </motion.div>
         )}

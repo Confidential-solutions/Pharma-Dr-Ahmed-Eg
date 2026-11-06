@@ -14,10 +14,10 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const socialLinks = [
-  { href: siteConfig.facebookUrl,  Icon: Facebook,  label: "Facebook"  },
+  { href: siteConfig.facebookUrl, Icon: Facebook, label: "Facebook" },
   { href: siteConfig.instagramUrl, Icon: Instagram, label: "Instagram" },
-  { href: siteConfig.tiktokUrl,    Icon: TikTokIcon, label: "TikTok"   },
-  { href: siteConfig.linkedinUrl,  Icon: Linkedin,  label: "LinkedIn"  },
+  { href: siteConfig.tiktokUrl, Icon: TikTokIcon, label: "TikTok" },
+  { href: siteConfig.linkedinUrl, Icon: Linkedin, label: "LinkedIn" },
 ];
 
 export function SiteFooter() {

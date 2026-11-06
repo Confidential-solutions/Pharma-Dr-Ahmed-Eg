@@ -1,15 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
-import { z } from "zod";
 import { Facebook, Instagram, Linkedin, Mail, Phone, Send } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useContactForm } from "@/hooks";
 import { images } from "@/lib/images";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { PageHero, Reveal } from "@/components/site/primitives";
 import { WhatsAppIcon } from "@/components/site/WhatsAppFab";
 
@@ -26,7 +31,11 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "تواصل معنا | صيدلية د. أحمد طارق سليم – ميت الرخا" },
-      { name: "description", content: "تواصل مع صيدلية د. أحمد طارق سليم عبر واتساب أو الهاتف لطلب الأدوية أو الاستشارة في ميت الرخا وزفتى." },
+      {
+        name: "description",
+        content:
+          "تواصل مع صيدلية د. أحمد طارق سليم عبر واتساب أو الهاتف لطلب الأدوية أو الاستشارة في ميت الرخا وزفتى.",
+      },
       { property: "og:title", content: "تواصل مع صيدلية د. أحمد طارق سليم" },
       { property: "og:description", content: "اطلب دواءك أو اسأل الصيدلي عبر واتساب." },
       { property: "og:type", content: "website" },
@@ -36,36 +45,11 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-type Errors = Partial<Record<"name" | "phone" | "message", string>>;
-
 function Contact() {
   const { t } = useI18n();
-  const [type, setType] = useState("order");
-  const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
-
-  const schema = z.object({
-    name: z.string().trim().min(2, t.contact.errName).max(100),
-    phone: z.string().trim().regex(/^\+?[0-9\s-]{8,16}$/, t.contact.errPhone),
-    message: z.string().trim().min(3, t.contact.errMsg).max(1000),
+  const { type, setType, errors, sent, onSubmit } = useContactForm({
+    labels: { ...t.contact, waMsg: t.waMsg },
   });
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const res = schema.safeParse(Object.fromEntries(fd));
-    if (!res.success) {
-      const errs: Errors = {};
-      res.error.issues.forEach((i) => (errs[i.path[0] as keyof Errors] = i.message));
-      setErrors(errs);
-      return;
-    }
-    setErrors({});
-    const typeLabel = t.contact.types[type as keyof typeof t.contact.types];
-    const text = `${t.contact.name}: ${res.data.name}\n${t.contact.phone}: ${res.data.phone}\n${t.contact.type}: ${typeLabel}\n\n${res.data.message}`;
-    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
-    setSent(true);
-  };
 
   const field = "h-12 rounded-xl bg-background";
 
@@ -74,39 +58,81 @@ function Contact() {
       <PageHero title={t.contact.title} sub={t.contact.sub} image={images.pharmacist} />
       <section className="container-page section-py grid gap-8 lg:grid-cols-[1.4fr_1fr]">
         <Reveal>
-          <form onSubmit={onSubmit} noValidate className="card-surface space-y-5 p-6 sm:p-8 md:p-10">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground">{t.contact.formTitle}</h2>
+          <form
+            onSubmit={onSubmit}
+            noValidate
+            className="card-surface space-y-5 p-6 sm:p-8 md:p-10"
+          >
+            <h2 className="text-2xl font-bold tracking-tight text-foreground">
+              {t.contact.formTitle}
+            </h2>
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="space-y-2 text-start">
                 <Label htmlFor="name">{t.contact.name}</Label>
-                <Input id="name" name="name" maxLength={100} className={field} aria-invalid={!!errors.name} />
+                <Input
+                  id="name"
+                  name="name"
+                  maxLength={100}
+                  className={field}
+                  aria-invalid={!!errors.name}
+                />
                 {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
               </div>
               <div className="space-y-2 text-start">
                 <Label htmlFor="phone">{t.contact.phone}</Label>
-                <Input id="phone" name="phone" type="tel" dir="ltr" maxLength={16} className={field} aria-invalid={!!errors.phone} />
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  dir="ltr"
+                  maxLength={16}
+                  className={field}
+                  aria-invalid={!!errors.phone}
+                />
                 {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
               </div>
             </div>
             <div className="space-y-2 text-start">
               <Label htmlFor="type">{t.contact.type}</Label>
               <Select value={type} onValueChange={setType}>
-                <SelectTrigger id="type" className={field}><SelectValue /></SelectTrigger>
+                <SelectTrigger id="type" className={field}>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
-                  {Object.entries(t.contact.types).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
+                  {Object.entries(t.contact.types).map(([k, v]) => (
+                    <SelectItem key={k} value={k}>
+                      {v}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2 text-start">
               <Label htmlFor="message">{t.contact.message}</Label>
-              <Textarea id="message" name="message" rows={5} maxLength={1000} className="rounded-xl bg-background" aria-invalid={!!errors.message} />
+              <Textarea
+                id="message"
+                name="message"
+                rows={5}
+                maxLength={1000}
+                className="rounded-xl bg-background"
+                aria-invalid={!!errors.message}
+              />
               {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
             </div>
-            <Button type="submit" variant="hero" size="xl" className="w-full rounded-full sm:w-auto">
+            <Button
+              type="submit"
+              variant="hero"
+              size="xl"
+              className="w-full rounded-full sm:w-auto"
+            >
               <Send className="me-2 h-4 w-4" />
               {t.contact.send}
             </Button>
-            {sent && <p className="text-sm font-medium text-primary" role="status">{t.contact.sentNote}</p>}
+            {sent && (
+              <p className="text-sm font-medium text-primary" role="status">
+                {t.contact.sentNote}
+              </p>
+            )}
           </form>
         </Reveal>
         <Reveal delay={0.1} className="space-y-6">
@@ -122,20 +148,25 @@ function Contact() {
               <Button asChild variant="outline" size="xl" className="w-full rounded-full">
                 <a href={siteConfig.phoneHref}>
                   <Phone className="me-2 h-4 w-4" />
-                  <span dir="ltr" className="unicode-isolate">{siteConfig.phoneDisplay}</span>
+                  <span dir="ltr" className="unicode-isolate">
+                    {siteConfig.phoneDisplay}
+                  </span>
                 </a>
               </Button>
               <Button asChild variant="soft" size="xl" className="w-full rounded-full">
                 <a href={siteConfig.emailHref}>
                   <Mail className="me-2 h-5 w-5" />
-                  <span dir="ltr" className="unicode-isolate">{siteConfig.email}</span>
+                  <span dir="ltr" className="unicode-isolate">
+                    {siteConfig.email}
+                  </span>
                 </a>
               </Button>
               {/* Social links row */}
               <div className="flex gap-2 pt-1">
                 <a
                   href={siteConfig.facebookUrl}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Facebook"
                   className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
@@ -143,7 +174,8 @@ function Contact() {
                 </a>
                 <a
                   href={siteConfig.instagramUrl}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Instagram"
                   className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
@@ -151,7 +183,8 @@ function Contact() {
                 </a>
                 <a
                   href={siteConfig.tiktokUrl}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="TikTok"
                   className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
@@ -159,7 +192,8 @@ function Contact() {
                 </a>
                 <a
                   href={siteConfig.linkedinUrl}
-                  target="_blank" rel="noopener noreferrer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="LinkedIn"
                   className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >

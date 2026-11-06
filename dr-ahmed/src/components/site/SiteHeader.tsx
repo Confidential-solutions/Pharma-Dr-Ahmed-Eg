@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, Cross, Home, Images, Info, Languages, MapPin, MessageSquare, Stethoscope, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useScrolled, useMenuDismiss } from "@/hooks";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { whatsappLink } from "@/lib/site-config";
@@ -53,30 +54,9 @@ export function SiteHeader() {
   const menuRef = useRef<HTMLDivElement>(null);
   const Chevron = lang === "ar" ? ChevronLeft : ChevronRight;
 
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e: PointerEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const onResize = () => innerWidth >= 1024 && setOpen(false);
-    document.addEventListener("pointerdown", onDown);
-    document.addEventListener("keydown", onKey);
-    window.addEventListener("resize", onResize);
-    return () => {
-      document.removeEventListener("pointerdown", onDown);
-      document.removeEventListener("keydown", onKey);
-      window.removeEventListener("resize", onResize);
-    };
-  }, [open]);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 10);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
+  // Extracted hooks — no inline useEffect needed
+  const scrolled = useScrolled(10);
+  useMenuDismiss(menuRef, open, setOpen);
 
   return (
     <header className={cn("sticky top-0 z-[56] transition-all duration-300", scrolled ? "glass border-b shadow-soft" : "bg-transparent")}>

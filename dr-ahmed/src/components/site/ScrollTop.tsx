@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { ArrowUp } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { useScrolled } from "@/hooks";
 
 // Back-to-top button on the opposite side of the WhatsApp button,
 // with a circular scroll-progress ring.
 export function ScrollTop() {
   const { t } = useI18n();
-  const [show, setShow] = useState(false);
+  const show = useScrolled(400);
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
-
-  useEffect(() => {
-    const on = () => setShow(window.scrollY > 400);
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
 
   return (
     <AnimatePresence>
@@ -34,10 +27,19 @@ export function ScrollTop() {
           whileTap={{ scale: 0.92 }}
           className="group fixed bottom-5 start-5 z-50 grid h-14 w-14 place-items-center rounded-full border bg-card/80 text-primary shadow-elegant backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          <svg viewBox="0 0 56 56" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden>
+          <svg
+            viewBox="0 0 56 56"
+            className="absolute inset-0 h-full w-full -rotate-90"
+            aria-hidden
+          >
             <circle cx="28" cy="28" r="25" fill="none" strokeWidth="3" className="stroke-muted" />
             <motion.circle
-              cx="28" cy="28" r="25" fill="none" strokeWidth="3" strokeLinecap="round"
+              cx="28"
+              cy="28"
+              r="25"
+              fill="none"
+              strokeWidth="3"
+              strokeLinecap="round"
               className="stroke-primary"
               style={{ pathLength: progress }}
             />
