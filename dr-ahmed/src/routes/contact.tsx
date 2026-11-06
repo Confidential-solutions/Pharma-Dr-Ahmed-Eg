@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Send } from "lucide-react";
+import { Mail, Phone, Send } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useContactForm } from "@/hooks";
 import { images } from "@/lib/images";
@@ -17,15 +17,7 @@ import {
 } from "@/components/ui/select";
 import { PageHero, Reveal } from "@/components/site/primitives";
 import { WhatsAppIcon } from "@/components/site/WhatsAppFab";
-
-/** TikTok SVG — not in Lucide */
-function TikTokIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.98a8.26 8.26 0 0 0 4.83 1.55V7.08a4.84 4.84 0 0 1-1.06-.39z" />
-    </svg>
-  );
-}
+import { SocialLinks } from "@/components/site/SocialLinks";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -161,45 +153,8 @@ function Contact() {
                   </span>
                 </a>
               </Button>
-              {/* Social links row */}
-              <div className="flex gap-2 pt-1">
-                <a
-                  href={siteConfig.facebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a
-                  href={siteConfig.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a
-                  href={siteConfig.tiktokUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <TikTokIcon className="h-5 w-5" />
-                </a>
-                <a
-                  href={siteConfig.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="inline-grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
+              {/* Social links */}
+              <SocialLinks className="pt-1" itemClassName="h-11 w-11" />
             </div>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border/50 shadow-soft">
