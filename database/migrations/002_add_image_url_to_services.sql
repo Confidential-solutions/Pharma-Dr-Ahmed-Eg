@@ -16,3 +16,4 @@ UPDATE public.services SET image_url = 'https://jqckzibvkggwfvsdzawa.supabase.co
 UPDATE public.services SET image_url = 'https://jqckzibvkggwfvsdzawa.supabase.co/storage/v1/object/public/pharmacy-images/pharmacist.jpg' WHERE key = 'chronic';
 UPDATE public.services SET image_url = 'https://jqckzibvkggwfvsdzawa.supabase.co/storage/v1/object/public/pharmacy-images/delivery.jpg' WHERE key = 'delivery';
 UPDATE public.services SET image_url = 'https://jqckzibvkggwfvsdzawa.supabase.co/storage/v1/object/public/pharmacy-images/bp-check.jpg' WHERE key = 'consult';
+

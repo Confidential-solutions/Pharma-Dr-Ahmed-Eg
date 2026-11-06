@@ -33,3 +33,4 @@ CREATE POLICY "Allow public read from pharmacy-images bucket"
     ON storage.objects FOR SELECT
     TO anon, authenticated
     USING (bucket_id = 'pharmacy-images');
+

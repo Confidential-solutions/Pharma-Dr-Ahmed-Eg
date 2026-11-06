@@ -46,3 +46,4 @@ jobs:
       - name: List package vulnerabilities
         run: dotnet list server-api/ServerApi.csproj package --vulnerable --include-transitive
         continue-on-error: true
+

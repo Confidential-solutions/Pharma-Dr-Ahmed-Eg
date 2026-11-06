@@ -12,8 +12,13 @@ export function SiteFooter() {
         <div className="space-y-4">
           <Logo />
           <p className="text-muted-foreground">{t.footer.tagline}</p>
-          <a href={siteConfig.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contact.facebook}
-            className="inline-grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
+          <a
+            href={siteConfig.facebookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t.contact.facebook}
+            className="inline-grid h-10 w-10 place-items-center rounded-full bg-secondary text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
             <Facebook className="h-5 w-5" />
           </a>
         </div>
@@ -21,23 +26,45 @@ export function SiteFooter() {
           <h3 className="mb-4 font-bold text-foreground">{t.footer.links}</h3>
           <ul className="space-y-2">
             {navItems.map((n) => (
-              <li key={n.to}><Link to={n.to} className="text-muted-foreground transition-colors hover:text-primary">{t.nav[n.key]}</Link></li>
+              <li key={n.to}>
+                <Link
+                  to={n.to}
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {t.nav[n.key]}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
         <div>
-          <h3 className="mb-4 flex items-center gap-2 font-bold text-foreground"><Clock className="h-4 w-4 text-primary" />{t.hoursTitle}</h3>
+          <h3 className="mb-4 flex items-center gap-2 font-bold text-foreground">
+            <Clock className="h-4 w-4 text-primary" />
+            {t.hoursTitle}
+          </h3>
           <ul className="space-y-3">
             {siteConfig.hours.map((h) => (
-              <li key={h.days.en} className="text-muted-foreground"><span className="block font-medium text-foreground">{h.days[lang]}</span>{h.time[lang]}</li>
+              <li key={h.days.en} className="text-muted-foreground">
+                <span className="block font-medium text-foreground">{h.days[lang]}</span>
+                {h.time[lang]}
+              </li>
             ))}
           </ul>
         </div>
         <div className="space-y-3">
           <h3 className="mb-4 font-bold text-foreground">{t.locationTitle}</h3>
-          <p className="flex gap-2 text-muted-foreground"><MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" />{t.address}</p>
-          <a href={siteConfig.phoneHref} className="flex items-center gap-2 text-muted-foreground hover:text-primary" dir="ltr">
-            <Phone className="h-4 w-4 text-primary" />{siteConfig.phoneDisplay}
+          <p className="flex gap-2 text-muted-foreground">
+            <MapPin className="mt-1 h-4 w-4 shrink-0 text-primary" />
+            {t.address}
+          </p>
+          <a
+            href={siteConfig.phoneHref}
+            className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+          >
+            <Phone className="h-4 w-4 shrink-0 text-primary" />
+            <span dir="ltr" className="unicode-isolate">
+              {siteConfig.phoneDisplay}
+            </span>
           </a>
         </div>
       </div>

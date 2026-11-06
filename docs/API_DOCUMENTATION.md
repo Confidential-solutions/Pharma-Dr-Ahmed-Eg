@@ -168,3 +168,4 @@ Submits a general inquiry or clinical consultation request for the pharmacist.
   "message": "Inquiry submitted successfully."
 }
 ```
+

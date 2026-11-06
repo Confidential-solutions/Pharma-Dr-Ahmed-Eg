@@ -81,3 +81,4 @@ jobs:
           files: |
             frontend-${{ steps.get_version.outputs.version }}.tar.gz
             backend-${{ steps.get_version.outputs.version }}.zip
+

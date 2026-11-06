@@ -21,6 +21,23 @@ import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { PageScrollbar } from "../components/site/PageScrollbar";
 import { ScrollTop } from "../components/site/ScrollTop";
 
+const langInitScript = `
+(function() {
+  try {
+    var l = localStorage.getItem('lang');
+    if (l === 'en') {
+      document.documentElement.lang = 'en';
+      document.documentElement.dir = 'ltr';
+      document.documentElement.setAttribute('data-dir', 'ltr');
+    } else {
+      document.documentElement.lang = 'ar';
+      document.documentElement.dir = 'rtl';
+      document.documentElement.setAttribute('data-dir', 'rtl');
+    }
+  } catch(e) {}
+})();
+`;
+
 // ── 404 Not Found ─────────────────────────────────────────────────────────────
 function NotFoundComponent() {
   return (
@@ -166,7 +183,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "dns-prefetch", href: "https://jqckzibvkggwfvsdzawa.supabase.co" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "preconnect", href: "https://jqckzibvkggwfvsdzawa.supabase.co", crossOrigin: "anonymous" },
       {
         rel: "preconnect",
         href: "https://jqckzibvkggwfvsdzawa.supabase.co",
@@ -174,7 +190,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Readex+Pro:wght@500;600;700&display=swap",
       },
     ],
   }),
@@ -190,6 +206,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
         <HeadContent />
       </head>
       <body>

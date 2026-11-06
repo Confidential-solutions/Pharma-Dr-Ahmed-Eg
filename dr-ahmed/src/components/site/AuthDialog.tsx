@@ -18,8 +18,7 @@ import { User as UserIcon, LogOut, Loader2 } from "lucide-react";
 
 export function AuthDialog() {
   const { user, signInWithEmail, signUpWithEmail, signOut, loading: authLoading } = useAuth();
-  const { lang } = useI18n();
-  const isAr = lang === "ar";
+  const { t } = useI18n();
 
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
@@ -34,7 +33,7 @@ export function AuthDialog() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      toast.error(isAr ? "يرجى ملء البريد وكلمة المرور" : "Please fill in email and password");
+      toast.error(t.auth.errEmailPassRequired);
       return;
     }
     setSubmitting(true);
@@ -43,7 +42,7 @@ export function AuthDialog() {
       if (error) {
         toast.error(error.message);
       } else {
-        toast.success(isAr ? "تم تسجيل الدخول بنجاح" : "Signed in successfully");
+        toast.success(t.auth.toastSignInSuccess);
         setOpen(false);
       }
     } finally {
@@ -54,7 +53,7 @@ export function AuthDialog() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || !fullName) {
-      toast.error(isAr ? "يرجى ملء كافة الحقول المطلوبة" : "Please fill in all required fields");
+      toast.error(t.auth.errAllRequiredFields);
       return;
     }
     setSubmitting(true);
@@ -66,11 +65,7 @@ export function AuthDialog() {
       if (error) {
         toast.error(error.message);
       } else {
-        toast.success(
-          isAr
-            ? "تم إنشاء الحساب بنجاح! راجع بريدك للتأكيد إذا تطلب الأمر."
-            : "Account created successfully! Check your email if verification is required.",
-        );
+        toast.success(t.auth.toastSignUpSuccess);
         setOpen(false);
       }
     } finally {
@@ -82,7 +77,7 @@ export function AuthDialog() {
     setSubmitting(true);
     try {
       await signOut();
-      toast.success(isAr ? "تم تسجيل الخروج" : "Signed out");
+      toast.success(t.auth.toastSignOutSuccess);
       setOpen(false);
     } finally {
       setSubmitting(false);
@@ -110,23 +105,24 @@ export function AuthDialog() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{isAr ? "حسابك الشخصي" : "Your Account"}</DialogTitle>
-            <DialogDescription>
-              {isAr ? "أنت مسجل الدخول حاليًا" : "You are currently logged in"}
-            </DialogDescription>
+            <DialogTitle>{t.auth.yourAccount}</DialogTitle>
+            <DialogDescription>{t.auth.currentlyLoggedIn}</DialogDescription>
           </DialogHeader>
-          <div className="py-4 space-y-2 text-sm">
+          <div className="py-4 space-y-2 text-sm text-start">
             <p>
-              <strong>{isAr ? "البريد الإلكتروني:" : "Email:"}</strong> {user.email}
+              <strong>{t.auth.email}:</strong> <span dir="ltr">{user.email}</span>
             </p>
             {user.user_metadata?.["full_name"] && (
               <p>
-                <strong>{isAr ? "الاسم:" : "Name:"}</strong> {user.user_metadata["full_name"]}
+                <strong>{t.auth.fullName}:</strong> {user.user_metadata["full_name"]}
               </p>
             )}
             {user.user_metadata?.["phone"] && (
               <p>
-                <strong>{isAr ? "رقم الهاتف:" : "Phone:"}</strong> {user.user_metadata["phone"]}
+                <strong>{t.auth.phone}:</strong>{" "}
+                <span dir="ltr" className="unicode-isolate">
+                  {user.user_metadata["phone"]}
+                </span>
               </p>
             )}
           </div>
@@ -137,7 +133,7 @@ export function AuthDialog() {
             disabled={submitting}
           >
             <LogOut className="w-4 h-4" />
-            {isAr ? "تسجيل الخروج" : "Sign Out"}
+            {t.auth.signOut}
           </Button>
         </DialogContent>
       </Dialog>
@@ -149,19 +145,13 @@ export function AuthDialog() {
       <DialogTrigger asChild>
         <Button variant="default" size="sm" className="gap-1.5 shadow-sm">
           <UserIcon className="w-4 h-4" />
-          <span>{isAr ? "تسجيل الدخول" : "Sign In"}</span>
+          <span>{t.auth.signIn}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl">
-            {isAr ? "صيدلية د. أحمد طارق" : "Dr. Ahmed Pharmacy"}
-          </DialogTitle>
-          <DialogDescription>
-            {isAr
-              ? "سجّل دخولك لمتابعة الروشتات والاستشارات الخاصة بك"
-              : "Sign in to track your prescriptions and consultations"}
-          </DialogDescription>
+          <DialogTitle className="text-xl">{t.brandShort}</DialogTitle>
+          <DialogDescription>{t.auth.signInDesc}</DialogDescription>
         </DialogHeader>
 
         <Tabs
@@ -170,18 +160,19 @@ export function AuthDialog() {
           className="w-full pt-2"
         >
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="signin">{isAr ? "دخول" : "Sign In"}</TabsTrigger>
-            <TabsTrigger value="signup">{isAr ? "حساب جديد" : "Sign Up"}</TabsTrigger>
+            <TabsTrigger value="signin">{t.auth.signIn}</TabsTrigger>
+            <TabsTrigger value="signup">{t.auth.signUp}</TabsTrigger>
           </TabsList>
 
           {/* SIGN IN */}
           <TabsContent value="signin" className="space-y-4 pt-3">
             <form onSubmit={handleSignIn} className="space-y-3">
               <div className="space-y-1 text-start">
-                <Label htmlFor="signin-email">{isAr ? "البريد الإلكتروني" : "Email"}</Label>
+                <Label htmlFor="signin-email">{t.auth.email}</Label>
                 <Input
                   id="signin-email"
                   type="email"
+                  dir="ltr"
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -189,10 +180,11 @@ export function AuthDialog() {
                 />
               </div>
               <div className="space-y-1 text-start">
-                <Label htmlFor="signin-password">{isAr ? "كلمة المرور" : "Password"}</Label>
+                <Label htmlFor="signin-password">{t.auth.password}</Label>
                 <Input
                   id="signin-password"
                   type="password"
+                  dir="ltr"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -201,7 +193,7 @@ export function AuthDialog() {
               </div>
               <Button type="submit" className="w-full mt-4" disabled={submitting}>
                 {submitting && <Loader2 className="w-4 h-4 animate-spin me-2" />}
-                {isAr ? "تسجيل الدخول" : "Sign In"}
+                {t.auth.signIn}
               </Button>
             </form>
           </TabsContent>
@@ -210,31 +202,36 @@ export function AuthDialog() {
           <TabsContent value="signup" className="space-y-4 pt-3">
             <form onSubmit={handleSignUp} className="space-y-3">
               <div className="space-y-1 text-start">
-                <Label htmlFor="signup-name">{isAr ? "الاسم بالكامل" : "Full Name"}</Label>
+                <Label htmlFor="signup-name">{t.auth.fullName}</Label>
                 <Input
                   id="signup-name"
                   type="text"
-                  placeholder={isAr ? "أحمد محمد" : "John Doe"}
+                  placeholder="د. أحمد محمد"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
                 />
               </div>
               <div className="space-y-1 text-start">
-                <Label htmlFor="signup-phone">{isAr ? "رقم الهاتف" : "Phone Number"}</Label>
+                <Label htmlFor="signup-phone">
+                  {t.auth.phone}{" "}
+                  <span className="text-xs text-muted-foreground">{t.auth.optional}</span>
+                </Label>
                 <Input
                   id="signup-phone"
                   type="tel"
+                  dir="ltr"
                   placeholder="+20 100 000 0000"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               <div className="space-y-1 text-start">
-                <Label htmlFor="signup-email">{isAr ? "البريد الإلكتروني" : "Email"}</Label>
+                <Label htmlFor="signup-email">{t.auth.email}</Label>
                 <Input
                   id="signup-email"
                   type="email"
+                  dir="ltr"
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -242,10 +239,11 @@ export function AuthDialog() {
                 />
               </div>
               <div className="space-y-1 text-start">
-                <Label htmlFor="signup-password">{isAr ? "كلمة المرور" : "Password"}</Label>
+                <Label htmlFor="signup-password">{t.auth.password}</Label>
                 <Input
                   id="signup-password"
                   type="password"
+                  dir="ltr"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -254,7 +252,7 @@ export function AuthDialog() {
               </div>
               <Button type="submit" className="w-full mt-4" disabled={submitting}>
                 {submitting && <Loader2 className="w-4 h-4 animate-spin me-2" />}
-                {isAr ? "إنشاء حساب جديد" : "Create Account"}
+                {t.auth.signUp}
               </Button>
             </form>
           </TabsContent>

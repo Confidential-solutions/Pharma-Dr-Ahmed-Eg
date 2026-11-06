@@ -99,3 +99,4 @@ npm run db:verify
 - Ensure both Arabic (RTL) and English (LTR) layouts render correctly for any UI changes.
 - Never commit credentials, Supabase service keys, or personal access tokens.
 - Keep commits granular and purposeful.
+

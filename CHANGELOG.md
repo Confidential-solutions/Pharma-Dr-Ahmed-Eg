@@ -36,3 +36,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive documentation in `docs/` (`ARCHITECTURE.md`, `API_DOCUMENTATION.md`, `DEPLOYMENT.md`, `DATABASE.md`, `PERFORMANCE.md`, `ROADMAP.md`).
   - Standardized governance files (`CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`, `LICENSE`).
   - Modular GitHub Actions CI/CD workflows and issue templates in `.github/`.
+

@@ -31,3 +31,4 @@ You will receive an acknowledgment within 48 hours, followed by regular status u
 - Row Level Security (RLS) is strictly enforced on Supabase database tables.
 - Authentication tokens (JWTs) are handled via secure HTTP headers and Supabase Auth.
 - Never commit private API keys, service role keys, or database credentials to version control.
+

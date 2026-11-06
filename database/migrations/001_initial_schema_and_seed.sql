@@ -88,3 +88,4 @@ CREATE POLICY "Allow public insert prescriptions" ON public.prescriptions FOR IN
 CREATE POLICY "Allow public read prescriptions" ON public.prescriptions FOR SELECT TO anon, authenticated USING (true);
 CREATE POLICY "Allow public insert contact_inquiries" ON public.contact_inquiries FOR INSERT TO anon, authenticated WITH CHECK (true);
 CREATE POLICY "Allow public read contact_inquiries" ON public.contact_inquiries FOR SELECT TO anon, authenticated USING (true);
+

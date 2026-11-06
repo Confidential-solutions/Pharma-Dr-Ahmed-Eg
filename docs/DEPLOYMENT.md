@@ -134,3 +134,4 @@ AllowedOrigins__1=https://www.pharma-dr-ahmed.com
 - [ ] Supabase storage bucket `pharmacy-images` set to `public = true`.
 - [ ] Compression (Brotli / Gzip) active.
 - [ ] Health check monitor configured for `/api/health`.
+

@@ -1,0 +1,30 @@
+export const arCommon = {
+  brand: "صيدلية د. أحمد طارق سليم",
+  brandShort: "صيدلية د. أحمد طارق",
+  nav: {
+    home: "الرئيسية",
+    about: "من نحن",
+    services: "خدماتنا",
+    location: "الموقع والمواعيد",
+    gallery: "معرض الصور",
+    contact: "تواصل معنا",
+  },
+  cta: {
+    whatsapp: "كلمنا واتساب",
+    call: "اتصل بنا",
+    order: "اطلب دواءك الآن",
+    directions: "افتح في خرائط جوجل",
+    more: "اعرف أكتر",
+    allServices: "كل الخدمات",
+  },
+  footer: {
+    links: "روابط سريعة",
+    rights: "جميع الحقوق محفوظة.",
+    tagline: "صيدليتك الأمينة في ميت الرخا.",
+  },
+  theme: "تبديل الوضع",
+  lang: "English",
+  menu: "القائمة",
+  toTop: "الرجوع لأعلى",
+  waMsg: "السلام عليكم، عايز أستفسر عن دواء",
+};

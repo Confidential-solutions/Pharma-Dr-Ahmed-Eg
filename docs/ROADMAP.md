@@ -38,3 +38,4 @@ This document tracks completed milestones and upcoming strategic initiatives for
 - [ ] **Online Payment Gateways**: Integration with Egyptian payment processors (Fawry, Vodafone Cash, InstaPay, Paymob).
 - [ ] **Chronic Refill Subscriptions**: Automated monthly recurring reminders for blood pressure and diabetic refills.
 - [ ] **Pharmacist Backoffice Portal**: Secured dashboard for Dr. Ahmed and staff to manage prescription queues and inventory.
+

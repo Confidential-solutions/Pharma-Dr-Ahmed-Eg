@@ -116,3 +116,4 @@ Pharma-Dr-Ahmed-Eg/
 | **Database & Auth** | **Supabase (PostgreSQL 15)** | Managed Postgres, Row Level Security, Supabase Auth (JWT), and Realtime updates. |
 | **Storage & CDN** | **Supabase Storage** | Public edge-cached bucket (`pharmacy-images`) for instant photo delivery. |
 | **Performance** | **Brotli/Gzip + HTTP Caching** | Server-level response compression and `[ResponseCache]` for high-concurrency read endpoints. |
+

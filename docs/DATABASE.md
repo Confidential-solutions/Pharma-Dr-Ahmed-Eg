@@ -82,3 +82,4 @@ erDiagram
 2. **`prescriptions`**:
    - Access: Public Insert (`anon`, `authenticated`), Public Read
    - Objects: Uploaded doctor prescriptions and medical slips.
+

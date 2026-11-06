@@ -99,3 +99,4 @@ node scripts/apply-migration.mjs <YOUR_SUPABASE_PAT>
 ```bash
 npm run db:upload-images
 ```
+

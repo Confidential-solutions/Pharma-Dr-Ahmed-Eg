@@ -1,0 +1,25 @@
+export const arContact = {
+  contact: {
+    title: "تواصل معنا",
+    sub: "عندك سؤال أو عايز تطلب دوا؟ إحنا موجودين.",
+    formTitle: "ابعت رسالة",
+    name: "الاسم",
+    phone: "رقم الموبايل",
+    type: "نوع الطلب",
+    message: "رسالتك",
+    types: {
+      order: "طلب دواء",
+      consult: "استشارة",
+      delivery: "توصيل",
+      other: "أخرى",
+    },
+    send: "إرسال عبر واتساب",
+    sentNote: "هيتفتح واتساب برسالتك جاهزة، اضغط إرسال.",
+    errName: "اكتب اسمك",
+    errPhone: "اكتب رقم موبايل صحيح",
+    errMsg: "اكتب رسالتك",
+    direct: "تواصل مباشر",
+    facebook: "صفحتنا على فيسبوك",
+    placeholderNote: "رقم مؤقت – سيتم تحديثه",
+  },
+};
