@@ -3,6 +3,11 @@ node_modules/
 .pnp
 .pnp.js
 
+# Lock files — platform-specific native binaries (lightningcss etc.) make these non-portable
+# Each environment (CI/Vercel/local) generates its own via `npm install`
+package-lock.json
+dr-ahmed/package-lock.json
+
 # Frontend Build & Output Artifacts
 dist/
 dist-ssr/
