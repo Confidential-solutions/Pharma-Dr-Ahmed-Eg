@@ -1,0 +1,33 @@
+{
+  "name": "dr-ahmed-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dr. Ahmed Pharmacy fullstack solution (Frontend in dr-ahmed, Backend in server-api)",
+  "workspaces": [
+    "dr-ahmed"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix dr-ahmed",
+    "build:frontend": "npm run build --prefix dr-ahmed",
+    "test:frontend": "npm run test --prefix dr-ahmed",
+    "lint:frontend": "npm run lint --prefix dr-ahmed",
+    "dev:backend": "dotnet watch --project server-api",
+    "build:backend": "dotnet build server-api",
+    "run:backend": "dotnet run --project server-api",
+    "test:backend": "dotnet test server-api",
+    "db:verify": "node scripts/verify-supabase.mjs",
+    "db:upload-images": "node scripts/upload-images-to-storage.mjs",
+    "db:add-image-url": "node scripts/add-image-url-to-services.mjs",
+    "build": "npm run build:frontend && npm run build:backend"
+  },
+  "keywords": [
+    "pharmacy",
+    "tanstack-start",
+    "react",
+    "aspnetcore",
+    "dotnet9",
+    "monorepo"
+  ],
+  "author": "Dr. Ahmed Architecture Team",
+  "license": "UNLICENSED"
+}

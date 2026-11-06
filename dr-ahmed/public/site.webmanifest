@@ -1,0 +1,24 @@
+{
+  "name": "صيدلية د. أحمد طارق سليم",
+  "short_name": "صيدلية د. أحمد",
+  "description": "Dr. Ahmed Tarek Selim Pharmacy — your trusted community pharmacy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
