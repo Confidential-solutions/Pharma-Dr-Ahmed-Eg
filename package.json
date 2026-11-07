@@ -3,7 +3,6 @@
   "version": "1.1.0",
   "private": true,
   "description": "Dr. Ahmed Pharmacy Fullstack Monorepo (React 19 Frontend in dr-ahmed/ & ASP.NET Core .NET 9 Backend in server-api/)",
-  "packageManager": "pnpm@12.14.0",
   "scripts": {
     "dev:frontend": "pnpm --dir dr-ahmed run dev",
     "build:frontend": "pnpm --dir dr-ahmed run build",

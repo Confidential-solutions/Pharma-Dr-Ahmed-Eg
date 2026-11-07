@@ -7,6 +7,7 @@
   "type": "module",
   "author": "Dr. Ahmed Pharmacy & Confidential Solutions <eng.jawadzahwe@gmail.com>",
   "license": "MIT",
+  "packageManager": "pnpm@12.14.0",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
