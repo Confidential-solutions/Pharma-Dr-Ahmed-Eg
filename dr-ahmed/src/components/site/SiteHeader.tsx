@@ -26,13 +26,42 @@ const navIcons: Record<(typeof navItems)[number]["key"], LucideIcon> = {
 };
 
 function MenuIcon({ open }: { open: boolean }) {
-  const line = "absolute h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-out";
   return (
-    <span className="relative block h-4 w-5" aria-hidden>
-      <span className={cn(line, "top-0", open && "top-1.5 rotate-45")} />
-      <span className={cn(line, "top-1.5", open && "scale-x-0 opacity-0")} />
-      <span className={cn(line, "top-3", open && "top-1.5 -rotate-45")} />
-    </span>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-5 w-5"
+      aria-hidden="true"
+    >
+      <motion.path
+        animate={open ? "open" : "closed"}
+        variants={{
+          closed: { d: "M 4 6 L 20 6" },
+          open: { d: "M 6 18 L 18 6" },
+        }}
+        transition={{ duration: 0.22, ease: "easeInOut" }}
+      />
+      <motion.path
+        animate={open ? "open" : "closed"}
+        variants={{
+          closed: { opacity: 1, d: "M 4 12 L 20 12" },
+          open: { opacity: 0, d: "M 12 12 L 12 12" },
+        }}
+        transition={{ duration: 0.18 }}
+      />
+      <motion.path
+        animate={open ? "open" : "closed"}
+        variants={{
+          closed: { d: "M 4 18 L 20 18" },
+          open: { d: "M 6 6 L 18 18" },
+        }}
+        transition={{ duration: 0.22, ease: "easeInOut" }}
+      />
+    </svg>
   );
 }
 
