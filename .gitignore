@@ -7,6 +7,9 @@ node_modules/
 # Each environment (CI/Vercel/local) generates its own via `npm install`
 package-lock.json
 dr-ahmed/package-lock.json
+bun.lock
+dr-ahmed/bun.lock
+*.lock
 
 # Frontend Build & Output Artifacts
 dist/
