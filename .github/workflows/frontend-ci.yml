@@ -6,14 +6,12 @@ on:
     paths:
       - 'dr-ahmed/**'
       - 'package.json'
-      - 'pnpm-workspace.yaml'
       - '.github/workflows/frontend-ci.yml'
   pull_request:
     branches: [ main, develop ]
     paths:
       - 'dr-ahmed/**'
       - 'package.json'
-      - 'pnpm-workspace.yaml'
       - '.github/workflows/frontend-ci.yml'
 
 jobs:

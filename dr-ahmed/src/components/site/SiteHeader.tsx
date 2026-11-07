@@ -31,35 +31,38 @@ function MenuIcon({ open }: { open: boolean }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-5 w-5"
+      className="h-[18px] w-[18px]"
       aria-hidden="true"
     >
-      <motion.path
+      {/* Top bar → becomes / of X when open */}
+      <motion.line
         animate={open ? "open" : "closed"}
         variants={{
-          closed: { d: "M 4 6 L 20 6" },
-          open: { d: "M 6 18 L 18 6" },
+          closed: { x1: 3, y1: 6,  x2: 21, y2: 6  },
+          open:   { x1: 5, y1: 19, x2: 19, y2: 5  },
         }}
-        transition={{ duration: 0.22, ease: "easeInOut" }}
+        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
       />
-      <motion.path
+      {/* Middle bar → fades out */}
+      <motion.line
         animate={open ? "open" : "closed"}
         variants={{
-          closed: { opacity: 1, d: "M 4 12 L 20 12" },
-          open: { opacity: 0, d: "M 12 12 L 12 12" },
+          closed: { x1: 3, y1: 12, x2: 21, y2: 12, opacity: 1 },
+          open:   { x1: 12, y1: 12, x2: 12, y2: 12, opacity: 0 },
         }}
-        transition={{ duration: 0.18 }}
+        transition={{ duration: 0.2 }}
       />
-      <motion.path
+      {/* Bottom bar → becomes \ of X when open */}
+      <motion.line
         animate={open ? "open" : "closed"}
         variants={{
-          closed: { d: "M 4 18 L 20 18" },
-          open: { d: "M 6 6 L 18 18" },
+          closed: { x1: 3, y1: 18, x2: 21, y2: 18 },
+          open:   { x1: 5, y1: 5,  x2: 19, y2: 19 },
         }}
-        transition={{ duration: 0.22, ease: "easeInOut" }}
+        transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
       />
     </svg>
   );
@@ -134,8 +137,10 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-haspopup="menu"
               className={cn(
-                "grid h-10 w-10 place-items-center rounded-full border text-foreground transition-all duration-300 hover:border-primary hover:text-primary",
-                open ? "border-primary bg-primary text-primary-foreground hover:text-primary-foreground" : "bg-card",
+                "grid h-10 w-10 place-items-center rounded-full border backdrop-blur-sm transition-all duration-300 hover:border-primary hover:text-primary",
+                open
+                  ? "border-primary bg-primary text-primary-foreground shadow-md hover:text-primary-foreground"
+                  : "border-border/60 bg-background/80 text-foreground shadow-sm",
               )}
             >
               <MenuIcon open={open} />

@@ -164,9 +164,7 @@ settings:
 
 importers:
 
-  .: {}
-
-  dr-ahmed:
+  .:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.2.2
