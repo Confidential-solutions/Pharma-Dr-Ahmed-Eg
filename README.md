@@ -64,6 +64,7 @@ Pharma-Dr-Ahmed-Eg/
 
 ### Prerequisites
 - **Node.js**: v20+ or v22+
+- **pnpm**: v12+ — `npm install -g pnpm`
 - **.NET SDK**: 9.0+
 - **Git**
 
@@ -74,7 +75,7 @@ cd Pharma-Dr-Ahmed-Eg
 
 # Install frontend dependencies
 cd dr-ahmed
-npm install
+pnpm install
 cd ..
 ```
 
@@ -82,7 +83,7 @@ cd ..
 
 #### Run the Backend Web API (`server-api`)
 ```bash
-npm run run:backend
+pnpm run:backend
 # Or: cd server-api && dotnet run
 ```
 - API Base: [http://localhost:5076](http://localhost:5076)
@@ -92,8 +93,8 @@ npm run run:backend
 
 #### Run the Frontend Web Application (`dr-ahmed`)
 ```bash
-npm run dev:frontend
-# Or: cd dr-ahmed && npm run dev
+pnpm dev:frontend
+# Or: cd dr-ahmed && pnpm run dev
 ```
 - Frontend Web App: [http://localhost:8080](http://localhost:8080) (or `http://localhost:3000`)
 
@@ -103,16 +104,17 @@ npm run dev:frontend
 
 | Command | Description |
 |---|---|
-| `npm run dev:frontend` | Start frontend Vite development server with HMR |
-| `npm run build:frontend` | Compile frontend for production (`.output/`) |
-| `npm run lint:frontend` | Lint frontend TypeScript code |
-| `npm run run:backend` | Run ASP.NET Core .NET 9 Web API |
-| `npm run build:backend` | Build backend solution in Release mode |
-| `npm run test:backend` | Run backend unit & integration tests |
-| `npm run build` | Build both frontend and backend concurrently |
-| `npm run db:verify` | Verify Supabase database tables & connection |
-| `npm run db:upload-images` | Upload compressed images to Supabase Storage CDN |
-| `npm run db:migrate` | Execute SQL migrations on Supabase |
+| `pnpm dev:frontend` | Start frontend Vite development server with HMR |
+| `pnpm build:frontend` | Compile frontend for production (`.output/`) |
+| `pnpm lint:frontend` | Lint frontend TypeScript code |
+| `pnpm typecheck:frontend` | Run TypeScript type-check without emitting |
+| `pnpm run:backend` | Run ASP.NET Core .NET 9 Web API |
+| `pnpm build:backend` | Build backend solution in Release mode |
+| `pnpm test:backend` | Run backend unit & integration tests |
+| `pnpm build` | Build both frontend and backend concurrently |
+| `pnpm db:verify` | Verify Supabase database tables & connection |
+| `pnpm db:upload-images` | Upload compressed images to Supabase Storage CDN |
+| `pnpm db:migrate` | Execute SQL migrations on Supabase |
 
 ---
 

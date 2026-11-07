@@ -19,6 +19,7 @@ Please review and adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) in all int
 
 ### Prerequisites
 - **Node.js**: v20.x or v22.x+
+- **pnpm**: v12+ — install with `npm install -g pnpm` or via [pnpm.io](https://pnpm.io/installation)
 - **.NET SDK**: 9.0+
 - **Git**
 
@@ -28,9 +29,9 @@ Please review and adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) in all int
 git clone https://github.com/Confidential-solutions/Pharma-Dr-Ahmed-Eg.git
 cd Pharma-Dr-Ahmed-Eg
 
-# Install frontend dependencies
+# Install frontend dependencies (uses pnpm-lock.yaml for reproducibility)
 cd dr-ahmed
-npm install
+pnpm install
 cd ..
 
 # Restore backend dependencies
@@ -42,10 +43,10 @@ cd ..
 ### Running Locally
 ```bash
 # Terminal 1: Run Backend API
-npm run run:backend
+pnpm run:backend
 
 # Terminal 2: Run Frontend App
-npm run dev:frontend
+pnpm dev:frontend
 ```
 - Frontend: [http://localhost:8080](http://localhost:8080)
 - Backend Swagger: [http://localhost:5076/swagger](http://localhost:5076/swagger)
@@ -78,17 +79,17 @@ Always run full verifications before submitting a pull request:
 
 ```bash
 # 1. Type check frontend
-cd dr-ahmed && npx tsc --noEmit && cd ..
+cd dr-ahmed && pnpm exec tsc --noEmit && cd ..
 
 # 2. Build frontend
-npm run build:frontend
+pnpm run build:frontend
 
 # 3. Build & test backend
-npm run build:backend
-npm run test:backend
+pnpm run build:backend
+pnpm run test:backend
 
 # 4. Verify database connectivity
-npm run db:verify
+pnpm run db:verify
 ```
 
 ---

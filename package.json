@@ -3,14 +3,13 @@
   "version": "1.1.0",
   "private": true,
   "description": "Dr. Ahmed Pharmacy Fullstack Monorepo (React 19 Frontend in dr-ahmed/ & ASP.NET Core .NET 9 Backend in server-api/)",
-  "workspaces": [
-    "dr-ahmed"
-  ],
+  "packageManager": "pnpm@12.14.0",
   "scripts": {
-    "dev:frontend": "npm run dev --prefix dr-ahmed",
-    "build:frontend": "npm run build --prefix dr-ahmed",
-    "test:frontend": "npm run test --prefix dr-ahmed",
-    "lint:frontend": "npm run lint --prefix dr-ahmed",
+    "dev:frontend": "pnpm --filter dr-ahmed run dev",
+    "build:frontend": "pnpm --filter dr-ahmed run build",
+    "test:frontend": "pnpm --filter dr-ahmed run test",
+    "lint:frontend": "pnpm --filter dr-ahmed run lint",
+    "typecheck:frontend": "pnpm --filter dr-ahmed exec tsc --noEmit",
     "dev:backend": "dotnet watch --project server-api",
     "build:backend": "dotnet build server-api",
     "run:backend": "dotnet run --project server-api",
@@ -19,7 +18,7 @@
     "db:migrate": "node scripts/apply-migration.mjs",
     "db:upload-images": "node scripts/upload-images-to-storage.mjs",
     "db:add-image-url": "node scripts/add-image-url-to-services.mjs",
-    "build": "npm run build:frontend && npm run build:backend"
+    "build": "pnpm run build:frontend && pnpm run build:backend"
   },
   "keywords": [
     "pharmacy",
@@ -28,6 +27,7 @@
     "aspnetcore",
     "dotnet9",
     "monorepo",
+    "pnpm",
     "supabase",
     "clean-architecture"
   ],

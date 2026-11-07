@@ -3,13 +3,17 @@ node_modules/
 .pnp
 .pnp.js
 
-# Lock files — platform-specific native binaries (lightningcss etc.) make these non-portable
-# Each environment (CI/Vercel/local) generates its own via `npm install`
+# Lock files — only pnpm-lock.yaml is the canonical lockfile (committed)
+# Platform-specific lockfiles from other package managers are ignored
 package-lock.json
 dr-ahmed/package-lock.json
+yarn.lock
 bun.lock
 dr-ahmed/bun.lock
-*.lock
+
+# pnpm virtual store (auto-generated, never commit)
+dr-ahmed/.pnpm-store/
+.pnpm-store/
 
 # Frontend Build & Output Artifacts
 dist/

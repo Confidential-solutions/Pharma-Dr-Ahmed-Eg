@@ -10,8 +10,8 @@ on:
     - cron: '0 0 * * 0'
 
 jobs:
-  npm-audit:
-    name: Frontend Dependency Audit
+  pnpm-audit:
+    name: Frontend Dependency Audit (pnpm)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,10 +22,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: Run npm audit
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12
+          run_install: false
+
+      - name: Install frontend dependencies
         run: |
           cd dr-ahmed
-          npm audit --audit-level=high
+          pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit
+        run: |
+          cd dr-ahmed
+          pnpm audit --audit-level=high
         continue-on-error: true
 
   dotnet-security:
@@ -46,4 +57,3 @@ jobs:
       - name: List package vulnerabilities
         run: dotnet list server-api/ServerApi.csproj package --vulnerable --include-transitive
         continue-on-error: true
-
