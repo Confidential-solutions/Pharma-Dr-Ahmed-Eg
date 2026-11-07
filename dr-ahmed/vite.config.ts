@@ -17,4 +17,34 @@ export default defineConfig({
     // SSR entry point — Nitro/Vite builds from dr-ahmed/src/server.ts
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 600,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/")) {
+              return "vendor-react";
+            }
+            if (id.includes("node_modules/@tanstack/")) {
+              return "vendor-tanstack";
+            }
+            if (id.includes("node_modules/@supabase/")) {
+              return "vendor-supabase";
+            }
+            if (id.includes("node_modules/motion/") || id.includes("node_modules/framer-motion/")) {
+              return "vendor-motion";
+            }
+            if (id.includes("node_modules/lucide-react/")) {
+              return "vendor-icons";
+            }
+            if (id.includes("node_modules/@radix-ui/")) {
+              return "vendor-radix";
+            }
+            return undefined;
+          },
+        },
+      },
+    },
+  },
 });
