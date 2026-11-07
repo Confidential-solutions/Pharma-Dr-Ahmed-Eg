@@ -5,20 +5,29 @@ import type { SocialLinkItem } from "@/types";
 
 export type { SocialLinkItem };
 
-/** TikTok SVG — clean inline SVG */
+/** TikTok SVG — styled to match Lucide outline stroke aesthetic (2px stroke, round caps/joins) */
 export function TikTokIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.98a8.26 8.26 0 0 0 4.83 1.55V7.08a4.84 4.84 0 0 1-1.06-.39z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
     </svg>
   );
 }
 
 export const socialLinks: SocialLinkItem[] = [
-  { key: "facebook",  href: siteConfig.facebookUrl,  Icon: Facebook,   label: "Facebook"  },
-  { key: "instagram", href: siteConfig.instagramUrl, Icon: Instagram,  label: "Instagram" },
-  { key: "tiktok",    href: siteConfig.tiktokUrl,    Icon: TikTokIcon, label: "TikTok"    },
-  { key: "linkedin",  href: siteConfig.linkedinUrl,  Icon: Linkedin,   label: "LinkedIn"  },
+  { key: "facebook", href: siteConfig.facebookUrl, Icon: Facebook, label: "Facebook" },
+  { key: "instagram", href: siteConfig.instagramUrl, Icon: Instagram, label: "Instagram" },
+  { key: "tiktok", href: siteConfig.tiktokUrl, Icon: TikTokIcon, label: "TikTok" },
+  { key: "linkedin", href: siteConfig.linkedinUrl, Icon: Linkedin, label: "LinkedIn" },
 ];
 
 interface SocialLinksProps {

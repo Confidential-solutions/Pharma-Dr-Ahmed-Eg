@@ -6,3 +6,4 @@ export interface SocialLinkItem {
   Icon: ComponentType<{ className?: string }>;
   label: string;
 }
+

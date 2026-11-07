@@ -4,3 +4,4 @@ export interface Todo {
   is_complete: boolean;
   inserted_at: string;
 }
+
