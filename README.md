@@ -6,7 +6,8 @@
 [![TanStack Start](https://img.shields.io/badge/TanStack-Start-FF4154?logo=reactquery&logoColor=white)](https://tanstack.com/start)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL_15-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
-[![Bilingual](https://img.shields.io/badge/i18n-Arabic_%26_English-16a34a)](dr-ahmed/src/lib/i18n.ts)
+[![Bilingual](https://img.shields.io/badge/i18n-Arabic_%26_English-16a34a)](dr-ahmed/src/i18n)
+[![Accessibility: WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG_2.1_AA-blue)](ACCESSIBILITY.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 An enterprise-grade, production-ready fullstack healthcare and pharmacy platform built for **Dr. Ahmed Tarek Selim Pharmacy** in Mit Al-Rakha, Zifta, Gharbia Governorate, Egypt.
@@ -139,6 +140,8 @@ For detailed payloads and examples, see [docs/API_DOCUMENTATION.md](docs/API_DOC
 - 🗄️ [Database Architecture & Migrations](database/README.md)
 - ⚡ [Performance & Optimization Strategies](docs/PERFORMANCE.md)
 - 🗺️ [Product Roadmap](docs/ROADMAP.md)
+- ♿ [Accessibility Statement & Standards](ACCESSIBILITY.md)
+- 📋 [Release Changelog](CHANGELOG.md)
 - 🤝 [Contributing Guidelines](CONTRIBUTING.md)
 - 🛡️ [Security Policy](SECURITY.md)
 

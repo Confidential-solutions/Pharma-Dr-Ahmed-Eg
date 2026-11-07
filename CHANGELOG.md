@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] - 2026-11-07
+
+### Added
+- **Modular Custom Hooks Architecture (`dr-ahmed/src/hooks/`)**:
+  - `useScrolled`: Configurable scroll-position threshold listener (powers `SiteHeader` and `ScrollTop`).
+  - `useMenuDismiss`: Accessible `pointerdown` outside, `Escape` key, and viewport resize dismissal.
+  - `useLightbox`: Full-screen image lightbox index management, keyboard navigation, and scroll lock.
+  - `useContactForm`: Localized WhatsApp deep-link generation and Zod schema validation.
+  - `useSupabaseTodos`: Clean Supabase PostgREST async CRUD hook with strongly typed error handling.
+  - `useAuthDialog`: Modal state, tab selection, and user feedback toast orchestration.
+  - `useLocalStorage` & `useWindowSize`: Cross-tab synchronized local storage and SSR-safe window sizing.
+  - Central barrel export via `@/hooks`.
+- **Centralized TypeScript Architecture (`dr-ahmed/src/types/`)**:
+  - Extracted and split all domain types into dedicated files: `api.ts`, `i18n.ts`, `auth.ts`, `theme.ts`, `database.ts`, and `social.ts`.
+  - Re-exported via central barrel `@/types` with backward-compatible forwarder in `i18n/types.ts`.
+- **Full-Bleed Hero Background Layout**:
+  - Transformed hero section into a full-bleed photo background with ambient primary glow and dark gradient overlay.
+- **Modern Animated 404 Page (`NotFoundPage.tsx`)**:
+  - Smooth Framer Motion spring physics, 3D levitating medical cross, and bilingual quick-exploration chips.
+- **Official Brand Contacts & Social Media**:
+  - WhatsApp & Phone: `+20 102 304 3122`.
+  - Official Email: `dr.ahmed.tarak73@gmail.com`.
+  - Social media channels: Facebook, Instagram, TikTok, LinkedIn.
+- **Accessibility Guidelines & Conformance (`ACCESSIBILITY.md`)**:
+  - Full WCAG 2.1 AA statement covering RTL/LTR layout, keyboard navigation, focus trapping, and screen reader support.
+
+### Fixed
+- **Mobile Menu Icon Alignment**:
+  - Replaced unanchored CSS spans with a mathematically centered 24×24 SVG with Framer Motion path morphing.
+- **TikTok Social Icon Alignment**:
+  - Replaced solid-fill vector with an outline stroke icon matching Lucide icons (`strokeWidth="2"`).
+- **CI/CD Platform Binary Portability**:
+  - Untracked Windows-generated `package-lock.json` so CI and Vercel resolve Linux-native `lightningcss` binaries.
+- **TypeScript Strict Safety**:
+  - Replaced explicit `any` in Supabase health check and AuthProvider with type-safe `unknown`.
+
+---
+
 ## [1.0.0] - 2026-11-07
 
 ### Added

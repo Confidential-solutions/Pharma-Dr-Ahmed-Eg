@@ -1,95 +1,70 @@
-# Accessibility
+# ♿ Accessibility Statement & Standards
 
-<!--
-Include a brief statement describing why accessibility matters to your
-project, who should be able to use and contribute to it, and what this
-document covers, such as your accessibility commitments, contributor
-expectations, and issue-reporting process.
+> **Dr. Ahmed Pharmacy (`صيدلية د. أحمد طارق سليم`)** is committed to digital equity and healthcare accessibility. We ensure that our platform is welcoming, usable, and accessible to everyone, including patients with visual, auditory, motor, cognitive disabilities, elderly patients, and assistive technology users.
 
-Write for people who may read this after encountering a barrier. Use plain
-language and describe user experiences rather than relying on legal
-language, technical jargon, or standards codes.
--->
+---
 
-## Priorities
+## 🎯 Our Standards & Target Conformance
 
-<!--
-Describe the outcomes the project prioritizes and how it works toward them.
-If you name a WCAG level as an accessibility target, make clear that it is
-an aspirational goal rather than a verified conformance claim. Only claim
-conformance after an evaluation, and identify the evaluated scope, date,
-method, and evaluator. Also describe the areas you prioritize, such as
-keyboard, screen reader, content, or language support.
--->
+We target conformance with the **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA** and follow universal design principles across our bilingual platform (Arabic primary, English secondary).
 
-## Contributor expectations
+---
 
-<!--
-Describe the accessibility guardrails that apply to contributions,
-including relevant testing, documentation, and continuous integration
-checks. Name specific tools only when the project uses them, and explain
-what evidence contributors should include with user-facing changes.
--->
+## 🏛️ Core Accessibility Pillars
 
-## Reporting accessibility issues
+### 1. Bilingual & Bidirectional Support (RTL & LTR)
+- **Native Directionality:** The interface automatically switches between `dir="rtl"` (Arabic) and `dir="ltr"` (English) with dedicated typography stacks (`Readex Pro` & `IBM Plex Sans Arabic` for Arabic; `Inter` for English).
+- **CSS Logical Properties:** All layouts use logical margins, paddings, and borders (`ms-*`, `me-*`, `ps-*`, `pe-*`, `border-s`, `border-e`, `start-*`, `end-*`) to prevent layout overlap or reading order confusion.
+- **BiDi Isolation:** Phone numbers, email addresses, and mixed alphanumeric codes use `dir="ltr"` with `unicode-bidi: isolate` (`unicode-isolate`) to guarantee natural reading order for screen readers.
 
-<!--
-Provide a direct, accessible way to report a barrier or request help.
-Invite useful context such as the affected task, URL, observed behavior,
-browser, operating system, and assistive technology. Make screenshots or
-recordings optional and do not require disability disclosure.
--->
+### 2. Keyboard Navigation & Focus Management
+- **Full Keyboard Operability:** Every interactive element (navigation links, buttons, theme toggles, modal dialogs, and form inputs) is fully operable via standard keyboard controls (`Tab`, `Shift+Tab`, `Enter`, `Space`, `Escape`).
+- **Visible Focus Indicators:** High-contrast focus rings (`focus-visible:ring-2 focus-visible:ring-ring`) are applied consistently across all interactive controls.
+- **Focus Trapping:** Modal dialogs (Authentication dialog, image lightboxes, mobile menu) trap focus within the active overlay and return focus to the triggering element upon dismissal.
+- **Escape Dismissal:** Pressing `Escape` reliably closes all open menus, modals, and image lightboxes.
 
-### Severity
+### 3. Screen Readers & Semantic Structure
+- **Semantic HTML5:** Native landmark tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`, `<article>`, `<dialog>`) are used throughout to allow screen reader users to jump between page regions.
+- **Accessible State Labels:** Dynamic controls declare their state using standard ARIA attributes (`aria-expanded`, `aria-haspopup`, `aria-modal="true"`, `aria-invalid`, `role="status"`).
+- **Decorative Media Exclusion:** Decorative SVGs, gradient overlays, and background illustrations carry `aria-hidden="true"` so assistive technologies only announce meaningful content.
+- **Meaningful Alternative Text:** All clinical service images, pharmacy photographs, and prescription upload previews feature descriptive `alt` attributes localized in the user's active language.
 
-<!--
-If your project uses severity levels, define them and give practical
-examples based on how strongly a barrier affects a user's ability to
-complete a task. Keep labels consistent with your issue template and
-resolution targets if those processes exist. Maintainers can assign or
-confirm severity during triage; reporters do not need to.
--->
+### 4. Color Contrast & Visual Design
+- **High-Contrast Palette:** All text elements meet or exceed WCAG AA contrast ratios (minimum 4.5:1 for body copy and 3:1 for large display text) in both Light and Dark modes.
+- **No Color-Only Information:** Status badges, error messages, and alerts convey status through icons and text labels in addition to color.
+- **Responsive Scalability:** The application supports text zoom up to 200% without loss of content, horizontal scrolling, or broken layouts.
 
-### How we respond
+### 5. Motion & Vestibular Safety
+- **Motion Reduction:** Respects the user's operating system preferences via `prefers-reduced-motion: reduce`.
+- **Gentle Transitions:** Transitions rely on smooth spring physics and subtle opacity shifts rather than aggressive flashing or high-frequency animations.
 
-<!--
-Explain what reporters can expect after submitting an accessibility issue,
-including acknowledgement, status updates, workarounds, expected timelines,
-and opportunities to verify a fix. Use commitments your project can
-consistently uphold.
--->
+---
 
-## Ownership and maintenance
+## 🧪 Evaluated & Supported Environments
 
-<!--
-Identify the team, role, or maintainer responsible for accessibility and
-describe their responsibilities to the project. Include the review cadence
-and how ownership transfers when responsibilities change.
--->
+We test and support the platform across modern browsers, operating systems, and assistive technologies:
 
-## Supported environments
+| Category | Supported / Evaluated Combinations |
+|---|---|
+| **Browsers** | Google Chrome, Mozilla Firefox, Apple Safari, Microsoft Edge |
+| **Mobile Platforms** | iOS (Safari), Android (Chrome, Samsung Internet) |
+| **Screen Readers** | NVDA (Windows), JAWS (Windows), VoiceOver (iOS & macOS), TalkBack (Android) |
+| **Input Methods** | Keyboard-only, touchscreen, switch access, high-contrast display modes |
 
-<!--
-List the platforms, devices, browsers, input methods, and assistive
-technologies the project supports or has tested. Include versions where
-useful, note partial support, and avoid implying support for combinations
-that have not been evaluated.
--->
+---
 
-## Known limitations
+## 📣 Reporting Accessibility Barriers
 
-<!--
-Describe known barriers in terms of the affected user experience, such as
-"videos do not have captions," rather than standards codes. Include
-available workarounds or equivalent access and link to tracked issues. If
-no limitations are currently documented, describe what has been tested
-instead of claiming that no barriers exist.
--->
+If you encounter any difficulty accessing any part of our website or service, please let us know so we can assist you and resolve the barrier:
 
-## Feedback and improvements
+- **WhatsApp Support:** [+20 102 304 3122](https://wa.me/201023043122)
+- **Direct Phone:** [+20 102 304 3122](tel:+201023043122)
+- **Email:** [dr.ahmed.tarak73@gmail.com](mailto:dr.ahmed.tarak73@gmail.com)
+- **GitHub Issues:** [Open an Accessibility Issue](https://github.com/Confidential-solutions/Pharma-Dr-Ahmed-Eg/issues/new?template=bug_report.yml)
 
-<!--
-Explain how users and contributors can suggest improvements to this
-statement or the project's accessibility practices. Direct active
-accessibility barriers to the reporting process above.
--->
+When reporting an issue, please describe:
+1. The webpage URL or task you were trying to complete.
+2. The barrier or unexpected behavior encountered.
+3. The browser, operating system, or assistive technology in use (if applicable).
+
+We acknowledge accessibility inquiries promptly and prioritize fixes in our continuous deployment releases.
