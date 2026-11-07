@@ -7,6 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to report this issue! Please provide as much context as possible.
+        If reporting an accessibility barrier, please see our [Accessibility Standards](https://github.com/Confidential-solutions/Pharma-Dr-Ahmed-Eg/blob/main/ACCESSIBILITY.md).
 
   - type: dropdown
     id: component
@@ -14,7 +15,9 @@ body:
       label: Affected Component
       description: Which part of the monorepo is experiencing the issue?
       options:
-        - "Frontend (dr-ahmed)"
+        - "Frontend UI / UX (dr-ahmed)"
+        - "Accessibility / A11y (WCAG / RTL)"
+        - "Prescription Upload / Orders"
         - "Backend Web API (server-api)"
         - "Database & Supabase (database/)"
         - "CI/CD & Workflows (.github/)"

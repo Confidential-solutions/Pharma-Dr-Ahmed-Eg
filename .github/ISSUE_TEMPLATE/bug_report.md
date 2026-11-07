@@ -1,38 +1,66 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+name: 🐛 Bug Report
+about: Report a defect, unexpected behavior, or accessibility barrier
+title: '[Bug]: '
+labels: 'bug'
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+### 🏥 Affected Subsystem
+<!-- Select the component experiencing the issue -->
+- [ ] Frontend UI / UX (`dr-ahmed/`)
+- [ ] Accessibility / WCAG 2.1 AA / RTL (`ACCESSIBILITY.md`)
+- [ ] Prescription Upload / Order Flow
+- [ ] Backend Web API (`server-api/`)
+- [ ] Database / Supabase Storage (`database/`)
+- [ ] CI/CD & GitHub Actions (`.github/`)
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+---
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### 📝 Problem Description
+<!-- A clear and concise description of what the defect or unexpected behavior is -->
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+---
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+### 🌐 Language & Directionality
+<!-- Did this happen in Arabic (RTL) or English (LTR)? -->
+- [ ] Arabic (RTL — `العربية`)
+- [ ] English (LTR)
+- [ ] Both / Language-independent
 
-**Additional context**
-Add any other context about the problem here.
+---
+
+### 🔁 Steps to Reproduce
+1. Navigate to '...'
+2. Click / Tap on '...'
+3. Perform action '...'
+4. Observe error or unexpected layout
+
+---
+
+### ✨ Expected Behavior
+<!-- A clear description of what you expected to happen -->
+
+
+---
+
+### 🖥️ Environment & Device Details
+| Parameter | Value |
+|---|---|
+| **Device & Model** | e.g. Desktop PC / iPhone 15 / Samsung Galaxy S24 |
+| **Operating System** | e.g. Windows 11 / macOS Sonoma / iOS 17 / Android 14 |
+| **Browser & Version** | e.g. Chrome 124 / Safari 17.4 / Firefox 125 |
+| **Assistive Technology** | e.g. NVDA / VoiceOver / TalkBack / Keyboard-only (if applicable) |
+
+---
+
+### 📷 Visual Evidence / Logs
+<!-- Attach screenshots, screen recordings, network payload, or terminal error logs if applicable -->
+
+
+---
+
+### 🔍 Additional Context
+<!-- Any additional clinical or technical context, Supabase error messages, or network response codes -->

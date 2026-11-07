@@ -4,6 +4,7 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 1.1.x   | :white_check_mark: |
 | 1.0.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
@@ -15,8 +16,9 @@ The security of patient health information, prescription data, and system integr
 
 If you discover a security vulnerability in this project, **do not open a public GitHub issue**. Instead, please report it privately:
 
-1. **Email**: Send details to `security@confidential-solutions.com` or `eng.jawadzahwe@gmail.com`.
-2. **Details to Include**:
+1. **Email**: Send details to `security@confidential-solutions.com`, `dr.ahmed.tarak73@gmail.com`, or `eng.jawadzahwe@gmail.com`.
+2. **Urgent Clinical / Data Line**: [+20 102 304 3122](https://wa.me/201023043122)
+3. **Details to Include**:
    - Description of the vulnerability and its potential impact.
    - Steps to reproduce or proof-of-concept code.
    - Any affected endpoints, components, or dependencies.

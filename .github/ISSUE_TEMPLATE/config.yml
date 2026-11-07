@@ -3,4 +3,9 @@ contact_links:
   - name: 📖 Documentation
     url: https://github.com/Confidential-solutions/Pharma-Dr-Ahmed-Eg/tree/main/docs
     about: Read our architecture and API documentation before submitting an issue.
-
+  - name: ♿ Accessibility Statement & Standards
+    url: https://github.com/Confidential-solutions/Pharma-Dr-Ahmed-Eg/blob/main/ACCESSIBILITY.md
+    about: Review our WCAG 2.1 AA digital equity standards and accessibility reporting channels.
+  - name: 💬 Direct Pharmacy Inquiries (WhatsApp)
+    url: https://wa.me/201023043122
+    about: For immediate prescription consultation or urgent patient inquiries, contact Dr. Ahmed Pharmacy directly.

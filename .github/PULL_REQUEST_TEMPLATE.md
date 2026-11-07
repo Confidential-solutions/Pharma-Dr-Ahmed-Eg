@@ -22,5 +22,6 @@
 - [ ] Backend builds without warnings (`dotnet build server-api`)
 - [ ] Backend tests pass (`dotnet test server-api`)
 - [ ] Bilingual check: Verified both Arabic (RTL) and English (LTR) layouts
+- [ ] Accessibility check: Verified keyboard navigation, visible focus rings, and WCAG contrast ([ACCESSIBILITY.md](ACCESSIBILITY.md))
 - [ ] No secrets, tokens, or credentials committed
 

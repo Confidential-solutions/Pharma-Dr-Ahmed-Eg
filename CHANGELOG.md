@@ -32,6 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Social media channels: Facebook, Instagram, TikTok, LinkedIn.
 - **Accessibility Guidelines & Conformance (`ACCESSIBILITY.md`)**:
   - Full WCAG 2.1 AA statement covering RTL/LTR layout, keyboard navigation, focus trapping, and screen reader support.
+- **GitHub Community Standards & Sponsorship**:
+  - Added `.github/FUNDING.yml` connecting official WhatsApp and direct support channels.
+  - Tailored `.github/ISSUE_TEMPLATE/bug_report.md` and `feature_request.md` with pharmacy-specific bilingual checklists.
+  - Added accessibility barrier reporting pathways across GitHub issue forms and PR templates.
 
 ### Fixed
 - **Mobile Menu Icon Alignment**:
