@@ -12,11 +12,14 @@
 /** Google Tag Manager container ID for Dr. Ahmed Pharmacy. */
 export const GTM_CONTAINER_ID = "GTM-WWF6MTLW";
 
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-    gtag?: (...args: unknown[]) => void;
-  }
+type AnalyticsWindow = Window & {
+  dataLayer?: unknown[];
+  gtag?: (...args: unknown[]) => void;
+};
+
+function getAnalyticsWindow(): AnalyticsWindow | undefined {
+  if (typeof window === "undefined") return undefined;
+  return window as unknown as AnalyticsWindow;
 }
 
 /**
@@ -25,8 +28,9 @@ declare global {
  */
 export function trackEvent(event: string, params: Record<string, unknown> = {}): void {
   try {
-    if (typeof window === "undefined" || !window.gtag) return;
-    window.gtag("event", event, params);
+    const win = getAnalyticsWindow();
+    if (!win?.gtag) return;
+    win.gtag("event", event, params);
   } catch {
     // Non-blocking: analytics failures should never disrupt UI rendering
   }
@@ -39,9 +43,10 @@ export function trackEvent(event: string, params: Record<string, unknown> = {}):
  */
 export function trackPageView(path: string, title?: string): void {
   try {
-    if (typeof window === "undefined" || !window.gtag) return;
+    const win = getAnalyticsWindow();
+    if (!win?.gtag) return;
     const safePath = typeof path === "string" ? path : String(path || "/");
-    window.gtag("event", "page_view", { page_path: safePath, page_title: title });
+    win.gtag("event", "page_view", { page_path: safePath, page_title: title });
   } catch {
     // Non-blocking: analytics failures should never disrupt UI rendering
   }
