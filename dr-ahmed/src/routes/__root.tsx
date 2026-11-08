@@ -11,6 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { GTM_CONTAINER_ID, trackPageView } from "../lib/analytics";
 import { reportError } from "../lib/error-reporting";
 import { ThemeProvider, themeInitScript } from "../lib/theme";
 import { I18nProvider } from "../lib/i18n";
@@ -141,7 +142,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "dns-prefetch", href: "https://jqckzibvkggwfvsdzawa.supabase.co" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "preconnect", href: "https://jqckzibvkggwfvsdzawa.supabase.co", crossOrigin: "anonymous" },
+      {
+        rel: "preconnect",
+        href: "https://jqckzibvkggwfvsdzawa.supabase.co",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Readex+Pro:wght@600;700&display=swap",
@@ -159,12 +164,32 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
+        {/* Google Tag Manager */}
+        <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            `,
+          }}
+        />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script dangerouslySetInnerHTML={{ __html: langInitScript }} />
         <HeadContent />
       </head>
       <body>
         {children}
+        {/* Google Tag Manager noscript fallback (no-JS environments) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <Scripts />
       </body>
     </html>
@@ -174,6 +199,13 @@ function RootShell({ children }: { children: ReactNode }) {
 // ── Root Component ────────────────────────────────────────────────────────────
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const { pathname, search } = router.state.location;
+
+  // Google Tag Manager: report SPA route changes as page_view events.
+  useEffect(() => {
+    trackPageView(`${pathname}${search}`);
+  }, [pathname, search]);
 
   return (
     <QueryClientProvider client={queryClient}>
