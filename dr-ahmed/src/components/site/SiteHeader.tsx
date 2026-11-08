@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { lazy, Suspense, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight, Cross, Home, Images, Info, Languages, MapPin, MessageSquare, Stethoscope, type LucideIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Cross, HelpCircle, Home, Images, Info, Languages, MapPin, MessageSquare, Stethoscope, type LucideIcon } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useScrolled, useMenuDismiss } from "@/hooks";
 import { ThemeToggle } from "./ThemeToggle";
@@ -127,7 +127,7 @@ export function SiteHeader() {
             <AuthDialog />
           </Suspense>
           <Button asChild variant="hero" className="hidden rounded-full md:inline-flex">
-            <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer">{t.cta.order}</a>
+            <Link to="/prescription">{t.cta.order}</Link>
           </Button>
           <div ref={menuRef} className="relative lg:hidden">
             <button
@@ -177,14 +177,28 @@ export function SiteHeader() {
                         </motion.li>
                       );
                     })}
-                  </ul>
+                    <motion.li initial={{ opacity: 0, filter: "blur(4px)" }} animate={{ opacity: 1, filter: "blur(0px)" }} transition={{ delay: 0.25 }}>
+                          <Link
+                            to="/help"
+                            onClick={() => setOpen(false)}
+                            activeOptions={{ exact: true }}
+                            className="group flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium [@media(max-height:500px)]:py-1 text-foreground transition-colors hover:bg-secondary data-[status=active]:bg-secondary data-[status=active]:text-primary"
+                          >
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-muted text-primary transition-colors [@media(max-height:500px)]:h-7 [@media(max-height:500px)]:w-7 group-hover:bg-gradient-primary group-hover:text-primary-foreground group-data-[status=active]:bg-gradient-primary group-data-[status=active]:text-primary-foreground">
+                              <HelpCircle className="h-4 w-4" aria-hidden />
+                            </span>
+                            <span className="min-w-0 flex-1 truncate">{lang === "ar" ? "الأسئلة الشائعة والمساعدة" : "Help & FAQs"}</span>
+                            <Chevron className="h-4 w-4 shrink-0 opacity-0 transition-all duration-300 group-hover:opacity-70 group-data-[status=active]:opacity-70" aria-hidden />
+                          </Link>
+                        </motion.li>
+                      </ul>
                   <div className="mt-2 flex flex-col gap-2 border-t pt-2 md:hidden">
                     <button type="button" onClick={toggleLang} className="flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-foreground transition-colors hover:bg-secondary sm:hidden">
                       <span className="grid h-9 w-9 place-items-center rounded-lg bg-muted text-primary"><Languages className="h-4 w-4" /></span>
                       {t.lang}
                     </button>
                     <Button asChild variant="hero" className="w-full rounded-xl md:hidden">
-                      <a href={whatsappLink(t.waMsg)} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>{t.cta.order}</a>
+                      <Link to="/prescription" onClick={() => setOpen(false)}>{t.cta.order}</Link>
                     </Button>
                   </div>
                 </motion.nav>
