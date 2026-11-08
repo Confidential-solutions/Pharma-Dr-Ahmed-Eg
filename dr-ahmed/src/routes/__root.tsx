@@ -200,12 +200,12 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
-  const { pathname, search } = router.state.location;
+  const { href } = router.state.location;
 
   // Google Tag Manager: report SPA route changes as page_view events.
   useEffect(() => {
-    trackPageView(`${pathname}${search}`);
-  }, [pathname, search]);
+    trackPageView(href);
+  }, [href]);
 
   return (
     <QueryClientProvider client={queryClient}>

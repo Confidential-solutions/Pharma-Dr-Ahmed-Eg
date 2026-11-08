@@ -24,8 +24,12 @@ declare global {
  * Mirrors the official gtag shim: `dataLayer.push(arguments)`.
  */
 export function trackEvent(event: string, params: Record<string, unknown> = {}): void {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", event, params);
+  try {
+    if (typeof window === "undefined" || !window.gtag) return;
+    window.gtag("event", event, params);
+  } catch {
+    // Non-blocking: analytics failures should never disrupt UI rendering
+  }
 }
 
 /**
@@ -34,6 +38,11 @@ export function trackEvent(event: string, params: Record<string, unknown> = {}):
  * so GTM/GA4 never sees route changes unless we push the events ourselves.
  */
 export function trackPageView(path: string, title?: string): void {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", "page_view", { page_path: path, page_title: title });
+  try {
+    if (typeof window === "undefined" || !window.gtag) return;
+    const safePath = typeof path === "string" ? path : String(path || "/");
+    window.gtag("event", "page_view", { page_path: safePath, page_title: title });
+  } catch {
+    // Non-blocking: analytics failures should never disrupt UI rendering
+  }
 }
