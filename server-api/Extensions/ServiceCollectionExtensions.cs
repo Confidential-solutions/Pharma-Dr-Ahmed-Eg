@@ -57,6 +57,7 @@ public static class ServiceCollectionExtensions
                     "http://127.0.0.1:5173",
                     "http://127.0.0.1:4173",
                     "http://127.0.0.1:8080",
+                    "https://pharma-dr-ahmed.vercel.app",
                     "https://pharma-dr-ahmed.pages.dev",
                     "https://dr-ahmed.com"
                 };
@@ -92,6 +93,7 @@ public static class ServiceCollectionExtensions
                 })
                 .AllowAnyHeader()
                 .AllowAnyMethod()
+                .WithExposedHeaders("X-Correlation-ID")
                 .AllowCredentials();
             });
         });

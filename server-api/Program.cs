@@ -15,14 +15,14 @@ builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
+// Enable CORS at the beginning of the pipeline for immediate preflight OPTIONS handling
+app.UseCors(ServiceCollectionExtensions.CorsPolicyName);
+
 // Correlation ID middleware (generates/propagates X-Correlation-ID for distributed tracing)
 app.UseMiddleware<CorrelationIdMiddleware>();
 
 // Global exception handling middleware (safe envelopes, no internal leak)
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
-
-// Enable CORS before other middleware to allow preflight requests
-app.UseCors(ServiceCollectionExtensions.CorsPolicyName);
 
 // Rate limiting for abuse protection on public endpoints
 app.UseRateLimiter();
