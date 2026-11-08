@@ -3,14 +3,14 @@
  * ------------
  * Google Tag Manager (GTM) integration for Dr. Ahmed Pharmacy app.
  *
- * The GTM container snippet (GTM-WWF6MTLW) is mounted in the SSR <head> of the
+ * The GTM container snippet (GTM-PC5977NB) is mounted in the SSR <head> of the
  * root route (`src/routes/__root.tsx`) and initializes the `dataLayer` there.
  * These helpers push additional events into the same dataLayer from
  * client-side code (SPA route changes, pharmacy actions, etc.).
  */
 
 /** Google Tag Manager container ID for Dr. Ahmed Pharmacy. */
-export const GTM_CONTAINER_ID = "GTM-WWF6MTLW";
+export const GTM_CONTAINER_ID = "GTM-PC5977NB";
 
 type AnalyticsWindow = Window & {
   dataLayer?: unknown[];

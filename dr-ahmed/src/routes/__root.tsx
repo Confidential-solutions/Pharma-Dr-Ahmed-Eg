@@ -170,8 +170,10 @@ function RootShell({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
+              window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+              function gtag(){window.dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('config', '${GTM_CONTAINER_ID}');
             `,
           }}
         />
