@@ -11,7 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { GTM_CONTAINER_ID, trackPageView } from "../lib/analytics";
+import { GA_MEASUREMENT_ID, GTM_CONTAINER_ID, trackPageView } from "../lib/analytics";
 import { reportError } from "../lib/error-reporting";
 import { ThemeProvider, themeInitScript } from "../lib/theme";
 import { I18nProvider } from "../lib/i18n";
@@ -164,7 +164,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
-        {/* Google Tag Manager */}
+        {/* Google Analytics 4 & Google Tag Manager */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
         <script async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`} />
         <script
           dangerouslySetInnerHTML={{
@@ -173,6 +174,7 @@ function RootShell({ children }: { children: ReactNode }) {
               window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
               function gtag(){window.dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });
               gtag('config', '${GTM_CONTAINER_ID}');
             `,
           }}
