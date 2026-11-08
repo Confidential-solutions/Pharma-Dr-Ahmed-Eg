@@ -7,6 +7,7 @@ namespace ServerApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class ServicesController : ControllerBase
 {
     private readonly IPharmacyService _pharmacyService;
@@ -18,10 +19,9 @@ public class ServicesController : ControllerBase
 
     [HttpGet]
     [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
-    public ActionResult<ApiResponse<IEnumerable<PharmacyServiceDto>>> GetAll()
+    public async Task<ActionResult<ApiResponse<IEnumerable<PharmacyServiceDto>>>> GetAll()
     {
-        var services = _pharmacyService.GetServices();
+        var services = await _pharmacyService.GetServicesAsync();
         return Ok(ApiResponse<IEnumerable<PharmacyServiceDto>>.Ok(services, "Services retrieved successfully"));
     }
 }
-

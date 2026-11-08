@@ -66,9 +66,6 @@ Stores inquiries, clinical questions, and consultation requests submitted by pat
 - `name` / `phone` / `subject` / `message` (TEXT)
 - `is_resolved` (BOOLEAN): Pharmacy staff resolution indicator
 
-### 5. `todos`
-Operational workflow checklist for pharmacy staff, integrated with .NET 9 Web API `TodosController`.
-
 ---
 
 ## Storage Buckets

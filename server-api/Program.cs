@@ -10,16 +10,22 @@ builder.Services.AddOpenApi();
 builder.Services.AddResponseCompression(options => { options.EnableForHttps = true; });
 builder.Services.AddResponseCaching();
 
-// Register application services, Supabase client, and CORS
+// Register application services, Supabase client, CORS, and Rate Limiting
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Global exception handling middleware
+// Enable CORS at the beginning of the pipeline for immediate preflight OPTIONS handling
+app.UseCors(ServiceCollectionExtensions.CorsPolicyName);
+
+// Correlation ID middleware (generates/propagates X-Correlation-ID for distributed tracing)
+app.UseMiddleware<CorrelationIdMiddleware>();
+
+// Global exception handling middleware (safe envelopes, no internal leak)
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
-// Enable CORS before other middleware to allow preflight requests
-app.UseCors(ServiceCollectionExtensions.CorsPolicyName);
+// Rate limiting for abuse protection on public endpoints
+app.UseRateLimiter();
 
 // Performance: gzip / brotli compression & HTTP response caching
 app.UseResponseCompression();

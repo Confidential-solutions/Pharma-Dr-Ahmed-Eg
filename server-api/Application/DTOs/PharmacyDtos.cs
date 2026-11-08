@@ -28,5 +28,6 @@ public class PharmacyServiceDto
     public string DescriptionArabic { get; set; } = string.Empty;
     public string DescriptionEnglish { get; set; } = string.Empty;
     public string? IconName { get; set; }
+    public string? ImageUrl { get; set; }
 }
 
