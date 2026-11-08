@@ -61,13 +61,6 @@ erDiagram
         boolean is_resolved
         timestamptz created_at
     }
-
-    TODOS {
-        bigint id PK
-        text name
-        boolean is_complete
-        timestamptz inserted_at
-    }
 ```
 
 ---

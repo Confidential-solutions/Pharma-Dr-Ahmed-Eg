@@ -42,22 +42,25 @@ Checks the service health, environment status, and system timestamp.
 
 ### 2. Pharmacy Information
 
-#### `GET /api/pharmacy/info`
+#### `GET /api/pharmacy/info` (or `/api/v1/pharmacy/info`)
 Retrieves the pharmacy branch details, localized names, phone contacts, WhatsApp number, and address coordinates.
 *Cached via HTTP 300s response cache header.*
 
 **Response `200 OK`**:
 ```json
 {
-  "nameArabic": "صيدلية د. أحمد طارق سليم",
-  "nameEnglish": "Dr. Ahmed Tarek Selim Pharmacy",
-  "shortNameArabic": "صيدلية د. أحمد طارق",
-  "shortNameEnglish": "Dr. Ahmed Tarek Pharmacy",
-  "phoneDisplay": "+20 1XX XXX XXXX",
-  "phoneHref": "tel:+201000000000",
-  "whatsappNumber": "201000000000",
-  "facebookUrl": "https://facebook.com/",
-  "addressArabic": "ميت الرخا، مركز زفتى، محافظة الغربية – وسط البلد بجوار مسجد الشيخ إسماعيل",
+  "success": true,
+  "message": "Pharmacy details retrieved successfully",
+  "data": {
+    "nameArabic": "صيدلية د. أحمد طارق سليم",
+    "nameEnglish": "Dr. Ahmed Tarek Selim Pharmacy",
+    "shortNameArabic": "صيدلية د. أحمد طارق",
+    "shortNameEnglish": "Dr. Ahmed Tarek Pharmacy",
+    "phoneDisplay": "+20 102 304 3122",
+    "phoneHref": "tel:+201023043122",
+    "whatsappNumber": "201023043122",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=61596102338642",
+    "addressArabic": "ميت الرخا، مركز زفتى، محافظة الغربية – وسط البلد بجوار مسجد الشيخ إسماعيل",
   "addressEnglish": "Mit Al-Rakha, Zifta, Gharbia Governorate – Town Center next to Sheikh Ismail Mosque",
   "mapQuery": "مسجد الشيخ إسماعيل ميت الرخا زفتى الغربية",
   "workingHours": [

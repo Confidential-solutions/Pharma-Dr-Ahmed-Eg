@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ServerApi.Common;
 
 namespace ServerApi.Application.DTOs;
 
@@ -9,7 +10,7 @@ public class CreateContactInquiryDto
     public string Name { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "رقم الهاتف مطلوب / Phone is required")]
-    [Phone(ErrorMessage = "رقم الهاتف غير صالح / Invalid phone number format")]
+    [EgyptianPhone]
     public string Phone { get; set; } = string.Empty;
 
     public string? Subject { get; set; }

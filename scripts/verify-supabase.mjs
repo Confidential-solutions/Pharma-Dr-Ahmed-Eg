@@ -2,7 +2,6 @@ const SUPABASE_URL = "https://jqckzibvkggwfvsdzawa.supabase.co";
 const SUPABASE_KEY = "sb_publishable_QOjIqSJvhptTcEKprbizPQ_VkWjya8B";
 
 const tablesToCheck = [
-  "todos",
   "pharmacy_info",
   "services",
   "prescriptions",

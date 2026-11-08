@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ServerApi.Common;
 using ServerApi.Core.Enums;
 
 namespace ServerApi.Application.DTOs;
@@ -10,7 +11,7 @@ public class CreatePrescriptionDto
     public string PatientName { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "رقم الهاتف مطلوب / Phone number is required")]
-    [Phone(ErrorMessage = "رقم الهاتف غير صالح / Invalid phone number format")]
+    [EgyptianPhone]
     public string PhoneNumber { get; set; } = string.Empty;
 
     public string? Address { get; set; }
