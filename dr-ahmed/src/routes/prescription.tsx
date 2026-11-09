@@ -19,6 +19,7 @@ import { Card, Reveal } from "@/components/site/primitives";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { prescriptionService } from "@/services/api/prescriptionService";
 import { storageService } from "@/services/api/storageService";
+import type { CreatePrescriptionDto } from "@/types/api";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/prescription")({
@@ -90,14 +91,19 @@ function PrescriptionPage() {
         }
       }
 
-      await prescriptionService.submit({
+      // Build payload without explicit `undefined` so exactOptionalPropertyTypes is satisfied.
+      const payload: CreatePrescriptionDto = {
         patientName: patientName.trim(),
         phoneNumber: phone.trim(),
-        address: address.trim() || undefined,
-        notes: notes.trim() || undefined,
-        imageUrl,
         requiresDelivery,
-      });
+      };
+      const trimmedAddress = address.trim();
+      if (trimmedAddress) payload.address = trimmedAddress;
+      const trimmedNotes = notes.trim();
+      if (trimmedNotes) payload.notes = trimmedNotes;
+      if (imageUrl) payload.imageUrl = imageUrl;
+
+      await prescriptionService.submit(payload);
 
       setSubmitted(true);
       toast.success(
